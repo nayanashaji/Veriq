@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Reconciliation Report</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #0f1420; --card: #161d2e; --accent: #6ee7b7; --accent2: #f87171;
+    --text: #e6e9f0; --muted: #93a0b8; --border: #232c42;
+  }
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--text); font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0; padding: 32px 48px;
+  }
+  h1 { font-size: 22px; font-weight: 600; margin-bottom: 4px; }
+  .subtitle { color: var(--muted); margin-bottom: 28px; font-size: 14px; }
+  .cards { display: flex; gap: 16px; margin-bottom: 32px; flex-wrap: wrap; }
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+    padding: 18px 22px; min-width: 180px; flex: 1;
+  }
+  .card .label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+  .card .value { font-size: 30px; font-weight: 700; margin-top: 6px; }
+  .card.good .value { color: var(--accent); }
+  .card.warn .value { color: var(--accent2); }
+  .section { margin-bottom: 36px; }
+  .section h2 { font-size: 16px; border-left: 3px solid var(--accent); padding-left: 10px; }
+  .chart-wrap { background: var(--card); border: 1px solid var(--border); border-radius: 12px;
+                 padding: 20px; max-width: 420px; }
+  table.data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.data-table th {
+    text-align: left; color: var(--muted); font-weight: 600; padding: 8px 10px;
+    border-bottom: 1px solid var(--border); text-transform: uppercase; font-size: 11px;
+  }
+  table.data-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); }
+  table.data-table tr:hover td { background: #1c2540; }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 11px; }
+  .badge.exact_id { background: #14532d; color: #86efac; }
+  .badge.fuzzy_amount_date { background: #713f12; color: #fde68a; }
+  .badge.split_bank_entries { background: #1e3a8a; color: #93c5fd; }
+  .badge.llm_assisted { background: #581c87; color: #d8b4fe; }
+</style>
+</head>
+<body>
+  <h1>Reconciliation Agent — Report</h1>
+  <div class="subtitle">Generated 2026-08-26T19:00:05.936821</div>
+
+  <div class="cards">
+    <div class="card good">
+      <div class="label">Match Rate</div>
+      <div class="value">90.0%</div>
+    </div>
+    <div class="card">
+      <div class="label">Settlements Considered</div>
+      <div class="value">70</div>
+    </div>
+    <div class="card good">
+      <div class="label">Matched</div>
+      <div class="value">63</div>
+    </div>
+    <div class="card warn">
+      <div class="label">Exceptions</div>
+      <div class="value">20</div>
+    </div>
+    <div class="card warn">
+      <div class="label">Unexplained Bank Credits</div>
+      <div class="value">3</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Match type breakdown</h2>
+    <div class="chart-wrap">
+      <canvas id="breakdownChart" width="380" height="260"></canvas>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Matched settlements (63)</h2>
+    <table class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>settlement_id</th>
+      <th>order_id</th>
+      <th>match_type</th>
+      <th>matched_bank_txn_ids</th>
+      <th>confidence</th>
+      <th>amount_diff</th>
+      <th>notes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>SETL5001</td>
+      <td>ORD1001</td>
+      <td>exact_id</td>
+      <td>BANK9001</td>
+      <td>0.99</td>
+      <td>2.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5003</td>
+      <td>ORD1003</td>
+      <td>exact_id</td>
+      <td>BANK9003</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5006</td>
+      <td>ORD1005</td>
+      <td>exact_id</td>
+      <td>BANK9005</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5007</td>
+      <td>ORD1006</td>
+      <td>exact_id</td>
+      <td>BANK9006</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5008</td>
+      <td>ORD1007</td>
+      <td>exact_id</td>
+      <td>BANK9007</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5010</td>
+      <td>ORD1008</td>
+      <td>exact_id</td>
+      <td>BANK9008</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5011</td>
+      <td>ORD1009</td>
+      <td>exact_id</td>
+      <td>BANK9009</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5012</td>
+      <td>ORD1010</td>
+      <td>exact_id</td>
+      <td>BANK9010</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5013</td>
+      <td>ORD1011</td>
+      <td>exact_id</td>
+      <td>BANK9011</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5014</td>
+      <td>ORD1012</td>
+      <td>exact_id</td>
+      <td>BANK9012</td>
+      <td>0.99</td>
+      <td>1.10</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5015</td>
+      <td>ORD1013</td>
+      <td>exact_id</td>
+      <td>BANK9013</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5016</td>
+      <td>ORD1014</td>
+      <td>exact_id</td>
+      <td>BANK9014</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5017</td>
+      <td>ORD1015</td>
+      <td>exact_id</td>
+      <td>BANK9015</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5019</td>
+      <td>ORD1016</td>
+      <td>exact_id</td>
+      <td>BANK9016</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5022</td>
+      <td>ORD1018</td>
+      <td>exact_id</td>
+      <td>BANK9018</td>
+      <td>0.99</td>
+      <td>0.90</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5023</td>
+      <td>ORD1019</td>
+      <td>exact_id</td>
+      <td>BANK9019</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5024</td>
+      <td>ORD1020</td>
+      <td>exact_id</td>
+      <td>BANK9020</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5027</td>
+      <td>ORD1022</td>
+      <td>exact_id</td>
+      <td>BANK9021</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5028</td>
+      <td>ORD1023</td>
+      <td>exact_id</td>
+      <td>BANK9022</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5032</td>
+      <td>ORD1026</td>
+      <td>exact_id</td>
+      <td>BANK9025</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5033</td>
+      <td>ORD1027</td>
+      <td>exact_id</td>
+      <td>BANK9026</td>
+      <td>0.99</td>
+      <td>2.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5039</td>
+      <td>ORD1032</td>
+      <td>exact_id</td>
+      <td>BANK9028</td>
+      <td>0.99</td>
+      <td>2.50</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5040</td>
+      <td>ORD1033</td>
+      <td>exact_id</td>
+      <td>BANK9029</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5041</td>
+      <td>ORD1034</td>
+      <td>exact_id</td>
+      <td>BANK9030</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5042</td>
+      <td>ORD1035</td>
+      <td>exact_id</td>
+      <td>BANK9031</td>
+      <td>0.99</td>
+      <td>2.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5044</td>
+      <td>ORD1037</td>
+      <td>exact_id</td>
+      <td>BANK9033</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5045</td>
+      <td>ORD1038</td>
+      <td>exact_id</td>
+      <td>BANK9034</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5051</td>
+      <td>ORD1043</td>
+      <td>exact_id</td>
+      <td>BANK9040</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5058</td>
+      <td>ORD1048</td>
+      <td>exact_id</td>
+      <td>BANK9044</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5060</td>
+      <td>ORD1050</td>
+      <td>exact_id</td>
+      <td>BANK9046</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5061</td>
+      <td>ORD1051</td>
+      <td>exact_id</td>
+      <td>BANK9047</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5064</td>
+      <td>ORD1054</td>
+      <td>exact_id</td>
+      <td>BANK9049</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5070</td>
+      <td>ORD1058</td>
+      <td>exact_id</td>
+      <td>BANK9054</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5073</td>
+      <td>ORD1061</td>
+      <td>exact_id</td>
+      <td>BANK9056</td>
+      <td>0.99</td>
+      <td>2.50</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5074</td>
+      <td>ORD1062</td>
+      <td>exact_id</td>
+      <td>BANK9057</td>
+      <td>0.99</td>
+      <td>2.50</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5077</td>
+      <td>ORD1064</td>
+      <td>exact_id</td>
+      <td>BANK9060</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5078</td>
+      <td>ORD1065</td>
+      <td>exact_id</td>
+      <td>BANK9061</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5079</td>
+      <td>ORD1066</td>
+      <td>exact_id</td>
+      <td>BANK9062</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5080</td>
+      <td>ORD1067</td>
+      <td>exact_id</td>
+      <td>BANK9063</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5082</td>
+      <td>ORD1069</td>
+      <td>exact_id</td>
+      <td>BANK9065</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5083</td>
+      <td>ORD1070</td>
+      <td>exact_id</td>
+      <td>BANK9066</td>
+      <td>0.99</td>
+      <td>0.00</td>
+      <td>Order ID found in bank narration; amount and date within tolerance.</td>
+    </tr>
+    <tr>
+      <td>SETL5002</td>
+      <td>ORD1002</td>
+      <td>fuzzy_amount_date</td>
+      <td>BANK9002</td>
+      <td>1.00</td>
+      <td>0.00</td>
+      <td>No order ID in narration; matched on amount (Δ₹0.00) and date (Δ0d).</td>
+    </tr>
+    <tr>
+      <td>SETL5029</td>
+      <td>ORD1024</td>
+      <td>fuzzy_amount_date</td>
+      <td>BANK9023</td>
+      <td>1.00</td>
+      <td>0.00</td>
+      <td>No order ID in narration; matched on amount (Δ₹0.00) and date (Δ0d).</td>
+    </tr>
+    <tr>
+      <td>SETL5031</td>
+      <td>ORD1025</td>
+      <td>fuzzy_amount_date</td>
+      <td>BANK9024</td>
+      <td>1.00</td>
+      <td>0.00</td>
+      <td>No order ID in narration; matched on amount (Δ₹0.00) and date (Δ0d).</td>
+    </tr>
+    <tr>
+      <td>SETL5043</td>
+      <td>ORD1036</td>
+      <td>fuzzy_amount_date</td>
+      <td>BANK9032</td>
+      <td>1.00</td>
+      <td>0.00</td>
+      <td>No order ID in narration; matched on amount (Δ₹0.00) and date (Δ0d).</td>
+    </tr>
+    <tr>
+      <td>SETL5048</td>
+      <td>ORD1040</td>
+      <td>fuzzy_amount_date</td>
+      <td>BANK9037</td>
+      <td>1.00</td>
+      <td>0.00</td>
+      <td>No order ID in narration; matched on amount (Δ₹0.00) and date (Δ0d).</td>
+    </tr>
+    <tr>
+      <td>SETL5050</td>
+      <td>ORD1042</td>
+      <td>fuzzy_amount_date</td>
+      <td>BANK9039</td>
+      <td>1.00</td>
+      <td>0.00</td>
+      <td>No order ID in narration; matched on amount (Δ₹0.00) and date (Δ0d).</td>
+    </tr>
+    <tr>
+      <td>SETL5052</td>
+      <td>ORD1044</td>
+      <td>fuzzy_amount_date</td>
+      <td>BANK9041</td>
+      <td>1.00</td>
+      <td>0.00</td>
+      <td>No order ID in narration; matched on amount (Δ₹0.00) and date (Δ0d).</td>
+    </tr>
+    <tr>
+      <td>SETL5059</td>
+      <td>ORD1049</td>
+      <td>fuzzy_amount_date</td>
+      <td>BANK9045</td>
+      <td>1.00</td>
+      <td>0.00</td>
+      <td>No order ID in narration; matched on amount (Δ₹0.00) and date (Δ0d).</td>
+    </tr>
+    <tr>
+      <td>SETL5062</td>
+      <td>ORD1052</td>
+      <td>fuzzy_amount_date</td>
+      <td>BANK9048</td>
+      <td>1.00</td>
+      <td>0.00</td>
+      <td>No order ID in narration; matched on amount (Δ₹0.00) and date (Δ0d).</td>
+    </tr>
+    <tr>
+      <td>SETL5081</td>
+      <td>ORD1068</td>
+      <td>fuzzy_amount_date</td>
+      <td>BANK9064</td>
+      <td>1.00</td>
+      <td>0.00</td>
+      <td>No order ID in narration; matched on amount (Δ₹0.00) and date (Δ0d).</td>
+    </tr>
+    <tr>
+      <td>SETL5037</td>
+      <td>ORD1030</td>
+      <td>fuzzy_amount_date</td>
+      <td>BANK9027</td>
+      <td>0.93</td>
+      <td>0.00</td>
+      <td>No order ID in narration; matched on amount (Δ₹0.00) and date (Δ1d).</td>
+    </tr>
+    <tr>
+      <td>SETL5049</td>
+      <td>ORD1041</td>
+      <td>fuzzy_amount_date</td>
+      <td>BANK9038</td>
+      <td>0.93</td>
+      <td>0.00</td>
+      <td>No order ID in narration; matched on amount (Δ₹0.00) and date (Δ1d).</td>
+    </tr>
+    <tr>
+      <td>SETL5054</td>
+      <td>ORD1045</td>
+      <td>fuzzy_amount_date</td>
+      <td>BANK9042</td>
+      <td>0.93</td>
+      <td>0.00</td>
+      <td>No order ID in narration; matched on amount (Δ₹0.00) and date (Δ1d).</td>
+    </tr>
+    <tr>
+      <td>SETL5065</td>
+      <td>ORD1055</td>
+      <td>fuzzy_amount_date</td>
+      <td>BANK9050</td>
+      <td>0.93</td>
+      <td>2.00</td>
+      <td>No order ID in narration; matched on amount (Δ₹2.00) and date (Δ0d).</td>
+    </tr>
+    <tr>
+      <td>SETL5056</td>
+      <td>ORD1046</td>
+      <td>fuzzy_amount_date</td>
+      <td>BANK9043</td>
+      <td>0.90</td>
+      <td>1.10</td>
+      <td>No order ID in narration; matched on amount (Δ₹1.10) and date (Δ1d).</td>
+    </tr>
+    <tr>
+      <td>SETL5025</td>
+      <td>ORD1021</td>
+      <td>fuzzy_amount_date</td>
+      <td>BANK9004</td>
+      <td>0.89</td>
+      <td>1.16</td>
+      <td>No order ID in narration; matched on amount (Δ₹1.16) and date (Δ1d).</td>
+    </tr>
+    <tr>
+      <td>SETL5020</td>
+      <td>ORD1017</td>
+      <td>fuzzy_amount_date</td>
+      <td>BANK9017</td>
+      <td>0.87</td>
+      <td>2.00</td>
+      <td>No order ID in narration; matched on amount (Δ₹2.00) and date (Δ1d).</td>
+    </tr>
+    <tr>
+      <td>SETL5066</td>
+      <td>ORD1056</td>
+      <td>fuzzy_amount_date</td>
+      <td>BANK9051</td>
+      <td>0.87</td>
+      <td>0.00</td>
+      <td>No order ID in narration; matched on amount (Δ₹0.00) and date (Δ2d).</td>
+    </tr>
+    <tr>
+      <td>SETL5071</td>
+      <td>ORD1059</td>
+      <td>fuzzy_amount_date</td>
+      <td>BANK9055</td>
+      <td>0.87</td>
+      <td>0.00</td>
+      <td>No order ID in narration; matched on amount (Δ₹0.00) and date (Δ2d).</td>
+    </tr>
+    <tr>
+      <td>SETL5046</td>
+      <td>ORD1039</td>
+      <td>split_bank_entries</td>
+      <td>BANK9035+BANK9036</td>
+      <td>0.80</td>
+      <td>0.00</td>
+      <td>Settlement amount matches the SUM of two unmatched bank entries within window.</td>
+    </tr>
+    <tr>
+      <td>SETL5068</td>
+      <td>ORD1057</td>
+      <td>split_bank_entries</td>
+      <td>BANK9052+BANK9053</td>
+      <td>0.80</td>
+      <td>0.00</td>
+      <td>Settlement amount matches the SUM of two unmatched bank entries within window.</td>
+    </tr>
+    <tr>
+      <td>SETL5075</td>
+      <td>ORD1063</td>
+      <td>split_bank_entries</td>
+      <td>BANK9058+BANK9059</td>
+      <td>0.80</td>
+      <td>0.00</td>
+      <td>Settlement amount matches the SUM of two unmatched bank entries within window.</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+
+  <div class="section">
+    <h2>Exceptions — honest, unresolved cases (20)</h2>
+    <table class="dataframe data-table">
+  <thead>
+    <tr style="text-align: right;">
+      <th>settlement_id</th>
+      <th>order_id</th>
+      <th>net_amount</th>
+      <th>settlement_date</th>
+      <th>reason</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>SETL5004</td>
+      <td>ORD1004</td>
+      <td>244.02</td>
+      <td>2026-08-05</td>
+      <td>Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.</td>
+    </tr>
+    <tr>
+      <td>SETL5005</td>
+      <td>ORD1004</td>
+      <td>-112.17</td>
+      <td>2026-08-08</td>
+      <td>Refund/partial-refund leg - not reconciled against bank credits in v1 (needs debit-side matching).</td>
+    </tr>
+    <tr>
+      <td>SETL5009</td>
+      <td>ORD1007</td>
+      <td>-4998.26</td>
+      <td>2026-07-23</td>
+      <td>Refund/partial-refund leg - not reconciled against bank credits in v1 (needs debit-side matching).</td>
+    </tr>
+    <tr>
+      <td>SETL5018</td>
+      <td>ORD1015</td>
+      <td>-1497.48</td>
+      <td>2026-07-18</td>
+      <td>Refund/partial-refund leg - not reconciled against bank credits in v1 (needs debit-side matching).</td>
+    </tr>
+    <tr>
+      <td>SETL5021</td>
+      <td>ORD1017</td>
+      <td>-510.24</td>
+      <td>2026-07-15</td>
+      <td>Refund/partial-refund leg - not reconciled against bank credits in v1 (needs debit-side matching).</td>
+    </tr>
+    <tr>
+      <td>SETL5026</td>
+      <td>ORD1021</td>
+      <td>-249.32</td>
+      <td>2026-08-07</td>
+      <td>Refund/partial-refund leg - not reconciled against bank credits in v1 (needs debit-side matching).</td>
+    </tr>
+    <tr>
+      <td>SETL5030</td>
+      <td>ORD1024</td>
+      <td>-998.83</td>
+      <td>2026-07-08</td>
+      <td>Refund/partial-refund leg - not reconciled against bank credits in v1 (needs debit-side matching).</td>
+    </tr>
+    <tr>
+      <td>SETL5034</td>
+      <td>ORD1028</td>
+      <td>4879.58</td>
+      <td>2026-07-19</td>
+      <td>Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.</td>
+    </tr>
+    <tr>
+      <td>SETL5035</td>
+      <td>ORD1029</td>
+      <td>2929.81</td>
+      <td>2026-08-06</td>
+      <td>Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.</td>
+    </tr>
+    <tr>
+      <td>SETL5036</td>
+      <td>ORD1029</td>
+      <td>-3000.62</td>
+      <td>2026-08-08</td>
+      <td>Refund/partial-refund leg - not reconciled against bank credits in v1 (needs debit-side matching).</td>
+    </tr>
+    <tr>
+      <td>SETL5038</td>
+      <td>ORD1031</td>
+      <td>488.89</td>
+      <td>2026-07-17</td>
+      <td>Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.</td>
+    </tr>
+    <tr>
+      <td>SETL5047</td>
+      <td>ORD1039</td>
+      <td>-1140.07</td>
+      <td>2026-08-16</td>
+      <td>Refund/partial-refund leg - not reconciled against bank credits in v1 (needs debit-side matching).</td>
+    </tr>
+    <tr>
+      <td>SETL5053</td>
+      <td>ORD1044</td>
+      <td>-264.34</td>
+      <td>2026-07-12</td>
+      <td>Refund/partial-refund leg - not reconciled against bank credits in v1 (needs debit-side matching).</td>
+    </tr>
+    <tr>
+      <td>SETL5055</td>
+      <td>ORD1045</td>
+      <td>-4999.34</td>
+      <td>2026-08-17</td>
+      <td>Refund/partial-refund leg - not reconciled against bank credits in v1 (needs debit-side matching).</td>
+    </tr>
+    <tr>
+      <td>SETL5057</td>
+      <td>ORD1047</td>
+      <td>1465.27</td>
+      <td>2026-08-11</td>
+      <td>Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.</td>
+    </tr>
+    <tr>
+      <td>SETL5063</td>
+      <td>ORD1053</td>
+      <td>4879.23</td>
+      <td>2026-08-06</td>
+      <td>Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.</td>
+    </tr>
+    <tr>
+      <td>SETL5067</td>
+      <td>ORD1056</td>
+      <td>-1999.67</td>
+      <td>2026-07-26</td>
+      <td>Refund/partial-refund leg - not reconciled against bank credits in v1 (needs debit-side matching).</td>
+    </tr>
+    <tr>
+      <td>SETL5069</td>
+      <td>ORD1057</td>
+      <td>-543.39</td>
+      <td>2026-07-18</td>
+      <td>Refund/partial-refund leg - not reconciled against bank credits in v1 (needs debit-side matching).</td>
+    </tr>
+    <tr>
+      <td>SETL5072</td>
+      <td>ORD1060</td>
+      <td>1950.98</td>
+      <td>2026-07-08</td>
+      <td>Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.</td>
+    </tr>
+    <tr>
+      <td>SETL5076</td>
+      <td>ORD1063</td>
+      <td>-384.50</td>
+      <td>2026-07-22</td>
+      <td>Refund/partial-refund leg - not reconciled against bank credits in v1 (needs debit-side matching).</td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+
+<script>
+  const ctx = document.getElementById('breakdownChart');
+  new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ["exact_id", "fuzzy_amount_date", "split_bank_entries"],
+      datasets: [{
+        data: [41, 19, 3],
+        backgroundColor: ['#6ee7b7', '#fde68a', '#93c5fd', '#d8b4fe', '#f87171'],
+        borderWidth: 0,
+      }]
+    },
+    options: {
+      plugins: { legend: { position: 'bottom', labels: { color: '#e6e9f0' } } }
+    }
+  });
+</script>
+</body>
+</html>
