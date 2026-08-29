@@ -1,0 +1,5 @@
+settlement_id,order_id,match_type,matched_bank_txn_ids,confidence,amount_diff,notes
+SETL5006,ORD1005,fuzzy_amount_date,BANK9006,0.81,1.75,No usable ID in narration; matched on amount (Δ₹1.75) and date (Δ2d).
+SETL5033,ORD1028,split_bank_entries,BANK9030+BANK9031,0.8,0.0,Settlement amount matches the SUM of two unmatched bank entries within window.
+SETL5076,ORD1063,split_bank_entries,BANK9071+BANK9072,0.8,0.9,Settlement amount matches the SUM of two unmatched bank entries within window.
+SETL5082,ORD1068,split_bank_entries,BANK9077+BANK9078,0.8,0.0,Settlement amount matches the SUM of two unmatched bank entries within window.

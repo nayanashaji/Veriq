@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-08-29T11:33:03.554691",
+  "total_settlements_considered": 85,
+  "matched_count": 77,
+  "match_rate_pct": 90.6,
+  "match_type_breakdown": {
+    "exact_id": 53,
+    "fuzzy_amount_date": 21,
+    "split_bank_entries": 3
+  },
+  "auto_accepted_count": 73,
+  "needs_review_count": 4,
+  "exception_count": 8,
+  "unexplained_bank_credit_count": 3,
+  "llm_assisted_used": false,
+  "pairwise_comparisons_made": 396,
+  "ground_truth_scoring": {
+    "true_positives": 74,
+    "false_positives": 3,
+    "false_negatives": 3,
+    "true_negatives": 8,
+    "precision": 0.961,
+    "recall": 0.961,
+    "auto_accept_precision": 1.0,
+    "auto_accept_count": 73
+  }
+}

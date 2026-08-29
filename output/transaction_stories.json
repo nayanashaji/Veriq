@@ -1,0 +1,2237 @@
+[
+  {
+    "order_id": "ORD1001",
+    "customer": "Lakshmi Narayan",
+    "gross_amount": 247.1,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-18",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b9247.1"
+      },
+      {
+        "date": "2026-07-18",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b9247.1"
+      },
+      {
+        "date": "2026-07-18",
+        "kind": "fee",
+        "text": "\u20b95.83 deducted (fee \u20b94.94 + tax \u20b90.89)"
+      },
+      {
+        "date": "2026-07-25",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b9241.27 via BANK9001 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1002",
+    "customer": "Rahul Iyer",
+    "gross_amount": 499.02,
+    "status": "RECONCILED",
+    "confidence": 1.0,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-02",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b9499.02"
+      },
+      {
+        "date": "2026-07-02",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b9499.02"
+      },
+      {
+        "date": "2026-07-02",
+        "kind": "fee",
+        "text": "\u20b911.78 deducted (fee \u20b99.98 + tax \u20b91.8)"
+      },
+      {
+        "date": "2026-07-04",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b9487.24 via BANK9002 (fuzzy_amount_date, confidence 100%) \u2014 No usable ID in narration; matched on amount (\u0394\u20b90.00) and date (\u03940d)."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1003",
+    "customer": "Priya Menon",
+    "gross_amount": 2998.69,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-18",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b92998.69"
+      },
+      {
+        "date": "2026-07-18",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b92998.69"
+      },
+      {
+        "date": "2026-07-18",
+        "kind": "fee",
+        "text": "\u20b970.76 deducted (fee \u20b959.97 + tax \u20b910.79)"
+      },
+      {
+        "date": "2026-07-19",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b92927.93 via BANK9003 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1004",
+    "customer": "Anjali Gupta",
+    "gross_amount": 249.92,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-08-04",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b9249.92"
+      },
+      {
+        "date": "2026-08-04",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b9249.92"
+      },
+      {
+        "date": "2026-08-04",
+        "kind": "fee",
+        "text": "\u20b95.9 deducted (fee \u20b95.0 + tax \u20b90.9)"
+      },
+      {
+        "date": "2026-08-05",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b9244.02 via BANK9005 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      },
+      {
+        "date": "2026-08-08",
+        "kind": "refund_initiated",
+        "text": "Partial refund of \u20b9112.46 initiated"
+      },
+      {
+        "date": "2026-08-08",
+        "kind": "bank_matched",
+        "text": "Refund debited from bank: \u20b9112.46 via BANK9004 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1005",
+    "customer": "Karthik Subramanian",
+    "gross_amount": 3000.34,
+    "status": "RECONCILED",
+    "confidence": 0.81,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-11",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b93000.34"
+      },
+      {
+        "date": "2026-07-11",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b93000.34"
+      },
+      {
+        "date": "2026-07-11",
+        "kind": "fee",
+        "text": "\u20b970.81 deducted (fee \u20b960.01 + tax \u20b910.8)"
+      },
+      {
+        "date": "2026-07-12",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b92929.53 via BANK9006 (fuzzy_amount_date, confidence 81%) \u2014 No usable ID in narration; matched on amount (\u0394\u20b91.75) and date (\u03942d)."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1006",
+    "customer": "Priya Menon",
+    "gross_amount": 1498.52,
+    "status": "RECONCILED",
+    "confidence": 1.0,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-08-10",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b91498.52"
+      },
+      {
+        "date": "2026-08-10",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b91498.52"
+      },
+      {
+        "date": "2026-08-10",
+        "kind": "fee",
+        "text": "\u20b935.36 deducted (fee \u20b929.97 + tax \u20b95.39)"
+      },
+      {
+        "date": "2026-08-11",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b91463.16 via BANK9007 (fuzzy_amount_date, confidence 100%) \u2014 No usable ID in narration; matched on amount (\u0394\u20b90.00) and date (\u03940d)."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1007",
+    "customer": "Divya Krishnan",
+    "gross_amount": 997.26,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-08-06",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b9997.26"
+      },
+      {
+        "date": "2026-08-06",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b9997.26"
+      },
+      {
+        "date": "2026-08-06",
+        "kind": "fee",
+        "text": "\u20b923.54 deducted (fee \u20b919.95 + tax \u20b93.59)"
+      },
+      {
+        "date": "2026-08-08",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b9973.72 via BANK9008 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1008",
+    "customer": "Suresh Babu",
+    "gross_amount": 1999.16,
+    "status": "RECONCILED",
+    "confidence": 1.0,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-08-07",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b91999.16"
+      },
+      {
+        "date": "2026-08-07",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b91999.16"
+      },
+      {
+        "date": "2026-08-07",
+        "kind": "fee",
+        "text": "\u20b947.18 deducted (fee \u20b939.98 + tax \u20b97.2)"
+      },
+      {
+        "date": "2026-08-08",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b91951.98 via BANK9009 (fuzzy_amount_date, confidence 100%) \u2014 No usable ID in narration; matched on amount (\u0394\u20b90.00) and date (\u03940d)."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1009",
+    "customer": "Nikhil Shah",
+    "gross_amount": 247.61,
+    "status": "RECONCILED",
+    "confidence": 0.93,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-11",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b9247.61"
+      },
+      {
+        "date": "2026-07-11",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b9247.61"
+      },
+      {
+        "date": "2026-07-11",
+        "kind": "fee",
+        "text": "\u20b95.84 deducted (fee \u20b94.95 + tax \u20b90.89)"
+      },
+      {
+        "date": "2026-07-12",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b9241.77 via BANK9010 (fuzzy_amount_date, confidence 93%) \u2014 No usable ID in narration; matched on amount (\u0394\u20b90.00) and date (\u03941d)."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1010",
+    "customer": "Nikhil Shah",
+    "gross_amount": 249.72,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-08",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b9249.72"
+      },
+      {
+        "date": "2026-07-08",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b9249.72"
+      },
+      {
+        "date": "2026-07-08",
+        "kind": "fee",
+        "text": "\u20b95.89 deducted (fee \u20b94.99 + tax \u20b90.9)"
+      },
+      {
+        "date": "2026-07-09",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b9243.83 via BANK9011 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1011",
+    "customer": "Suresh Babu",
+    "gross_amount": 2998.05,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-08-02",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b92998.05"
+      },
+      {
+        "date": "2026-08-02",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b92998.05"
+      },
+      {
+        "date": "2026-08-02",
+        "kind": "fee",
+        "text": "\u20b970.75 deducted (fee \u20b959.96 + tax \u20b910.79)"
+      },
+      {
+        "date": "2026-08-03",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b92927.3 via BANK9012 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1012",
+    "customer": "Arjun Kumar",
+    "gross_amount": 4997.65,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for. Duplicate webhook detected and excluded \u2014 did not affect the money movement.",
+    "events": [
+      {
+        "date": "2026-08-03",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b94997.65"
+      },
+      {
+        "date": "2026-08-03",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b94997.65"
+      },
+      {
+        "date": "2026-08-03",
+        "kind": "fee",
+        "text": "\u20b9117.94 deducted (fee \u20b999.95 + tax \u20b917.99)"
+      },
+      {
+        "date": "2026-08-05",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b94879.71 via BANK9013 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      },
+      {
+        "date": "2026-08-05",
+        "kind": "duplicate",
+        "text": "Duplicate settlement webhook detected for \u20b94879.71 \u2014 no second bank credit expected, ignored in reconciliation."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1013",
+    "customer": "Rahul Iyer",
+    "gross_amount": 2000.79,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-06",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b92000.79"
+      },
+      {
+        "date": "2026-07-06",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b92000.79"
+      },
+      {
+        "date": "2026-07-06",
+        "kind": "fee",
+        "text": "\u20b947.22 deducted (fee \u20b940.02 + tax \u20b97.2)"
+      },
+      {
+        "date": "2026-07-08",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b91953.57 via BANK9014 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1014",
+    "customer": "Meera Pillai",
+    "gross_amount": 4999.43,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-14",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b94999.43"
+      },
+      {
+        "date": "2026-07-14",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b94999.43"
+      },
+      {
+        "date": "2026-07-14",
+        "kind": "fee",
+        "text": "\u20b9117.99 deducted (fee \u20b999.99 + tax \u20b918.0)"
+      },
+      {
+        "date": "2026-07-15",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b94881.44 via BANK9015 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1015",
+    "customer": "Meera Pillai",
+    "gross_amount": 1497.48,
+    "status": "PARTIALLY RECONCILED",
+    "confidence": 0.46,
+    "summary": "Open thread(s): Full refund (\u20b91497.48): Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.",
+    "events": [
+      {
+        "date": "2026-07-15",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b91497.48"
+      },
+      {
+        "date": "2026-07-15",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b91497.48"
+      },
+      {
+        "date": "2026-07-15",
+        "kind": "fee",
+        "text": "\u20b935.34 deducted (fee \u20b929.95 + tax \u20b95.39)"
+      },
+      {
+        "date": "2026-07-24",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b91462.14 via BANK9016 (fuzzy_amount_date, confidence 92%) \u2014 No usable ID in narration; matched on amount (\u0394\u20b92.50) and date (\u03940d)."
+      },
+      {
+        "date": "2026-07-26",
+        "kind": "refund_initiated",
+        "text": "Full refund of \u20b91497.48 initiated"
+      },
+      {
+        "date": "2026-07-26",
+        "kind": "unresolved",
+        "text": "No confirmed bank movement for full refund of \u20b91497.48 \u2014 Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1016",
+    "customer": "Vikram Nair",
+    "gross_amount": 1997.95,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-08-12",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b91997.95"
+      },
+      {
+        "date": "2026-08-12",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b91997.95"
+      },
+      {
+        "date": "2026-08-12",
+        "kind": "fee",
+        "text": "\u20b947.15 deducted (fee \u20b939.96 + tax \u20b97.19)"
+      },
+      {
+        "date": "2026-08-14",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b91950.8 via BANK9017 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1017",
+    "customer": "Vikram Nair",
+    "gross_amount": 2998.72,
+    "status": "RECONCILED",
+    "confidence": 0.87,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-28",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b92998.72"
+      },
+      {
+        "date": "2026-07-28",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b92998.72"
+      },
+      {
+        "date": "2026-07-28",
+        "kind": "fee",
+        "text": "\u20b970.76 deducted (fee \u20b959.97 + tax \u20b910.79)"
+      },
+      {
+        "date": "2026-07-29",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b92927.96 via BANK9018 (fuzzy_amount_date, confidence 87%) \u2014 No usable ID in narration; matched on amount (\u0394\u20b92.00) and date (\u03941d)."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1018",
+    "customer": "Vikram Nair",
+    "gross_amount": 497.77,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-08-04",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b9497.77"
+      },
+      {
+        "date": "2026-08-04",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b9497.77"
+      },
+      {
+        "date": "2026-08-04",
+        "kind": "fee",
+        "text": "\u20b911.75 deducted (fee \u20b99.96 + tax \u20b91.79)"
+      },
+      {
+        "date": "2026-08-05",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b9486.02 via BANK9019 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1019",
+    "customer": "Meera Pillai",
+    "gross_amount": 4997.06,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-06",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b94997.06"
+      },
+      {
+        "date": "2026-07-06",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b94997.06"
+      },
+      {
+        "date": "2026-07-06",
+        "kind": "fee",
+        "text": "\u20b9117.93 deducted (fee \u20b999.94 + tax \u20b917.99)"
+      },
+      {
+        "date": "2026-07-07",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b94879.13 via BANK9020 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1020",
+    "customer": "Ananya Rao",
+    "gross_amount": 1498.06,
+    "status": "RECONCILED",
+    "confidence": 1.0,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-30",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b91498.06"
+      },
+      {
+        "date": "2026-07-30",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b91498.06"
+      },
+      {
+        "date": "2026-07-30",
+        "kind": "fee",
+        "text": "\u20b935.35 deducted (fee \u20b929.96 + tax \u20b95.39)"
+      },
+      {
+        "date": "2026-08-01",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b91462.71 via BANK9021 (fuzzy_amount_date, confidence 100%) \u2014 No usable ID in narration; matched on amount (\u0394\u20b90.00) and date (\u03940d)."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1021",
+    "customer": "Rohan Varma",
+    "gross_amount": 2999.17,
+    "status": "PARTIALLY RECONCILED",
+    "confidence": 0.495,
+    "summary": "Open thread(s): Full refund (\u20b92999.17): Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.",
+    "events": [
+      {
+        "date": "2026-07-21",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b92999.17"
+      },
+      {
+        "date": "2026-07-21",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b92999.17"
+      },
+      {
+        "date": "2026-07-21",
+        "kind": "fee",
+        "text": "\u20b970.78 deducted (fee \u20b959.98 + tax \u20b910.8)"
+      },
+      {
+        "date": "2026-07-23",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b92928.39 via BANK9022 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      },
+      {
+        "date": "2026-07-25",
+        "kind": "refund_initiated",
+        "text": "Full refund of \u20b92999.17 initiated"
+      },
+      {
+        "date": "2026-07-25",
+        "kind": "unresolved",
+        "text": "No confirmed bank movement for full refund of \u20b92999.17 \u2014 Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1022",
+    "customer": "Lakshmi Narayan",
+    "gross_amount": 4997.94,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-08",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b94997.94"
+      },
+      {
+        "date": "2026-07-08",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b94997.94"
+      },
+      {
+        "date": "2026-07-08",
+        "kind": "fee",
+        "text": "\u20b9117.95 deducted (fee \u20b999.96 + tax \u20b917.99)"
+      },
+      {
+        "date": "2026-07-10",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b94879.99 via BANK9023 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1023",
+    "customer": "Arjun Kumar",
+    "gross_amount": 997.82,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-08-15",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b9997.82"
+      },
+      {
+        "date": "2026-08-15",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b9997.82"
+      },
+      {
+        "date": "2026-08-15",
+        "kind": "fee",
+        "text": "\u20b923.55 deducted (fee \u20b919.96 + tax \u20b93.59)"
+      },
+      {
+        "date": "2026-08-16",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b9974.27 via BANK9024 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1024",
+    "customer": "Rohan Varma",
+    "gross_amount": 2000.98,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-05",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b92000.98"
+      },
+      {
+        "date": "2026-07-05",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b92000.98"
+      },
+      {
+        "date": "2026-07-05",
+        "kind": "fee",
+        "text": "\u20b947.22 deducted (fee \u20b940.02 + tax \u20b97.2)"
+      },
+      {
+        "date": "2026-07-06",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b91953.76 via BANK9025 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1025",
+    "customer": "Karthik Subramanian",
+    "gross_amount": 4999.17,
+    "status": "RECONCILED",
+    "confidence": 1.0,
+    "summary": "Full lifecycle accounted for. Duplicate webhook detected and excluded \u2014 did not affect the money movement.",
+    "events": [
+      {
+        "date": "2026-07-20",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b94999.17"
+      },
+      {
+        "date": "2026-07-20",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b94999.17"
+      },
+      {
+        "date": "2026-07-20",
+        "kind": "fee",
+        "text": "\u20b9117.98 deducted (fee \u20b999.98 + tax \u20b918.0)"
+      },
+      {
+        "date": "2026-07-22",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b94881.19 via BANK9026 (fuzzy_amount_date, confidence 100%) \u2014 No usable ID in narration; matched on amount (\u0394\u20b90.00) and date (\u03940d)."
+      },
+      {
+        "date": "2026-07-22",
+        "kind": "duplicate",
+        "text": "Duplicate settlement webhook detected for \u20b94881.19 \u2014 no second bank credit expected, ignored in reconciliation."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1026",
+    "customer": "Priya Menon",
+    "gross_amount": 997.46,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-07",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b9997.46"
+      },
+      {
+        "date": "2026-07-07",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b9997.46"
+      },
+      {
+        "date": "2026-07-07",
+        "kind": "fee",
+        "text": "\u20b923.54 deducted (fee \u20b919.95 + tax \u20b93.59)"
+      },
+      {
+        "date": "2026-07-08",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b9973.92 via BANK9027 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1027",
+    "customer": "Sneha Pillai",
+    "gross_amount": 4997.2,
+    "status": "RECONCILED",
+    "confidence": 1.0,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-08-10",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b94997.2"
+      },
+      {
+        "date": "2026-08-10",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b94997.2"
+      },
+      {
+        "date": "2026-08-10",
+        "kind": "fee",
+        "text": "\u20b9117.93 deducted (fee \u20b999.94 + tax \u20b917.99)"
+      },
+      {
+        "date": "2026-08-11",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b94879.27 via BANK9028 (fuzzy_amount_date, confidence 100%) \u2014 No usable ID in narration; matched on amount (\u0394\u20b90.00) and date (\u03940d)."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1028",
+    "customer": "Meera Pillai",
+    "gross_amount": 2998.71,
+    "status": "RECONCILED",
+    "confidence": 0.8,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-01",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b92998.71"
+      },
+      {
+        "date": "2026-07-01",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b92998.71"
+      },
+      {
+        "date": "2026-07-01",
+        "kind": "fee",
+        "text": "\u20b970.76 deducted (fee \u20b959.97 + tax \u20b910.79)"
+      },
+      {
+        "date": "2026-07-02",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b92927.95 via BANK9030+BANK9031 (split_bank_entries, confidence 80%) \u2014 Settlement amount matches the SUM of two unmatched bank entries within window."
+      },
+      {
+        "date": "2026-07-04",
+        "kind": "refund_initiated",
+        "text": "Partial refund of \u20b91349.42 initiated"
+      },
+      {
+        "date": "2026-07-04",
+        "kind": "bank_matched",
+        "text": "Refund debited from bank: \u20b91349.42 via BANK9029 (fuzzy_amount_date, confidence 96%) \u2014 No usable ID in narration; matched on amount (\u0394\u20b91.25) and date (\u03940d)."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1029",
+    "customer": "Rahul Iyer",
+    "gross_amount": 4997.65,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-12",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b94997.65"
+      },
+      {
+        "date": "2026-07-12",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b94997.65"
+      },
+      {
+        "date": "2026-07-12",
+        "kind": "fee",
+        "text": "\u20b9117.94 deducted (fee \u20b999.95 + tax \u20b917.99)"
+      },
+      {
+        "date": "2026-07-21",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b94879.71 via BANK9032 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1030",
+    "customer": "Anjali Gupta",
+    "gross_amount": 2997.43,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-03",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b92997.43"
+      },
+      {
+        "date": "2026-07-03",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b92997.43"
+      },
+      {
+        "date": "2026-07-03",
+        "kind": "fee",
+        "text": "\u20b970.74 deducted (fee \u20b959.95 + tax \u20b910.79)"
+      },
+      {
+        "date": "2026-07-05",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b92926.69 via BANK9033 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1031",
+    "customer": "Rahul Iyer",
+    "gross_amount": 1498.31,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-05",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b91498.31"
+      },
+      {
+        "date": "2026-07-05",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b91498.31"
+      },
+      {
+        "date": "2026-07-05",
+        "kind": "fee",
+        "text": "\u20b935.36 deducted (fee \u20b929.97 + tax \u20b95.39)"
+      },
+      {
+        "date": "2026-07-07",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b91462.95 via BANK9034 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1032",
+    "customer": "Sneha Pillai",
+    "gross_amount": 499.32,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-17",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b9499.32"
+      },
+      {
+        "date": "2026-07-17",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b9499.32"
+      },
+      {
+        "date": "2026-07-17",
+        "kind": "fee",
+        "text": "\u20b911.79 deducted (fee \u20b99.99 + tax \u20b91.8)"
+      },
+      {
+        "date": "2026-07-18",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b9487.53 via BANK9036 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      },
+      {
+        "date": "2026-07-21",
+        "kind": "refund_initiated",
+        "text": "Full refund of \u20b9499.32 initiated"
+      },
+      {
+        "date": "2026-07-21",
+        "kind": "bank_matched",
+        "text": "Refund debited from bank: \u20b9499.32 via BANK9035 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1033",
+    "customer": "Anjali Gupta",
+    "gross_amount": 1999.75,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-08-12",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b91999.75"
+      },
+      {
+        "date": "2026-08-12",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b91999.75"
+      },
+      {
+        "date": "2026-08-12",
+        "kind": "fee",
+        "text": "\u20b947.2 deducted (fee \u20b940.0 + tax \u20b97.2)"
+      },
+      {
+        "date": "2026-08-13",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b91952.55 via BANK9037 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1034",
+    "customer": "Lakshmi Narayan",
+    "gross_amount": 1498.3,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-08-14",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b91498.3"
+      },
+      {
+        "date": "2026-08-14",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b91498.3"
+      },
+      {
+        "date": "2026-08-14",
+        "kind": "fee",
+        "text": "\u20b935.36 deducted (fee \u20b929.97 + tax \u20b95.39)"
+      },
+      {
+        "date": "2026-08-22",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b91462.94 via BANK9038 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1035",
+    "customer": "Sneha Pillai",
+    "gross_amount": 1499.19,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-01",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b91499.19"
+      },
+      {
+        "date": "2026-07-01",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b91499.19"
+      },
+      {
+        "date": "2026-07-01",
+        "kind": "fee",
+        "text": "\u20b935.38 deducted (fee \u20b929.98 + tax \u20b95.4)"
+      },
+      {
+        "date": "2026-07-03",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b91463.81 via BANK9039 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1036",
+    "customer": "Anjali Gupta",
+    "gross_amount": 4999.94,
+    "status": "PARTIALLY RECONCILED",
+    "confidence": 0.495,
+    "summary": "Open thread(s): Main settlement (\u20b94881.94): Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.",
+    "events": [
+      {
+        "date": "2026-08-12",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b94999.94"
+      },
+      {
+        "date": "2026-08-12",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b94999.94"
+      },
+      {
+        "date": "2026-08-12",
+        "kind": "fee",
+        "text": "\u20b9118.0 deducted (fee \u20b9100.0 + tax \u20b918.0)"
+      },
+      {
+        "date": "2026-08-14",
+        "kind": "unresolved",
+        "text": "No confirmed bank movement for main settlement of \u20b94881.94 \u2014 Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review."
+      },
+      {
+        "date": "2026-08-16",
+        "kind": "refund_initiated",
+        "text": "Partial refund of \u20b92249.97 initiated"
+      },
+      {
+        "date": "2026-08-16",
+        "kind": "bank_matched",
+        "text": "Refund debited from bank: \u20b92249.97 via BANK9040 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1037",
+    "customer": "Karthik Subramanian",
+    "gross_amount": 2000.4,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-05",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b92000.4"
+      },
+      {
+        "date": "2026-07-05",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b92000.4"
+      },
+      {
+        "date": "2026-07-05",
+        "kind": "fee",
+        "text": "\u20b947.21 deducted (fee \u20b940.01 + tax \u20b97.2)"
+      },
+      {
+        "date": "2026-07-07",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b91953.19 via BANK9041 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1038",
+    "customer": "Suresh Babu",
+    "gross_amount": 250.57,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-07",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b9250.57"
+      },
+      {
+        "date": "2026-07-07",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b9250.57"
+      },
+      {
+        "date": "2026-07-07",
+        "kind": "fee",
+        "text": "\u20b95.91 deducted (fee \u20b95.01 + tax \u20b90.9)"
+      },
+      {
+        "date": "2026-07-09",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b9244.66 via BANK9042 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1039",
+    "customer": "Anjali Gupta",
+    "gross_amount": 1499.67,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-08-05",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b91499.67"
+      },
+      {
+        "date": "2026-08-05",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b91499.67"
+      },
+      {
+        "date": "2026-08-05",
+        "kind": "fee",
+        "text": "\u20b935.39 deducted (fee \u20b929.99 + tax \u20b95.4)"
+      },
+      {
+        "date": "2026-08-07",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b91464.28 via BANK9043 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1040",
+    "customer": "Priya Menon",
+    "gross_amount": 3000.45,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-29",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b93000.45"
+      },
+      {
+        "date": "2026-07-29",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b93000.45"
+      },
+      {
+        "date": "2026-07-29",
+        "kind": "fee",
+        "text": "\u20b970.81 deducted (fee \u20b960.01 + tax \u20b910.8)"
+      },
+      {
+        "date": "2026-07-30",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b92929.64 via BANK9044 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1041",
+    "customer": "Suresh Babu",
+    "gross_amount": 997.94,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-22",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b9997.94"
+      },
+      {
+        "date": "2026-07-22",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b9997.94"
+      },
+      {
+        "date": "2026-07-22",
+        "kind": "fee",
+        "text": "\u20b923.55 deducted (fee \u20b919.96 + tax \u20b93.59)"
+      },
+      {
+        "date": "2026-07-23",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b9974.39 via BANK9045 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1042",
+    "customer": "Divya Krishnan",
+    "gross_amount": 999.17,
+    "status": "RECONCILED",
+    "confidence": 0.93,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-27",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b9999.17"
+      },
+      {
+        "date": "2026-07-27",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b9999.17"
+      },
+      {
+        "date": "2026-07-27",
+        "kind": "fee",
+        "text": "\u20b923.58 deducted (fee \u20b919.98 + tax \u20b93.6)"
+      },
+      {
+        "date": "2026-07-29",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b9975.59 via BANK9047 (fuzzy_amount_date, confidence 93%) \u2014 No usable ID in narration; matched on amount (\u0394\u20b90.00) and date (\u03941d)."
+      },
+      {
+        "date": "2026-07-30",
+        "kind": "refund_initiated",
+        "text": "Full refund of \u20b9999.17 initiated"
+      },
+      {
+        "date": "2026-07-30",
+        "kind": "bank_matched",
+        "text": "Refund debited from bank: \u20b9999.17 via BANK9046 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1043",
+    "customer": "Nikhil Shah",
+    "gross_amount": 1499.15,
+    "status": "RECONCILED",
+    "confidence": 0.9,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-08-04",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b91499.15"
+      },
+      {
+        "date": "2026-08-04",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b91499.15"
+      },
+      {
+        "date": "2026-08-04",
+        "kind": "fee",
+        "text": "\u20b935.38 deducted (fee \u20b929.98 + tax \u20b95.4)"
+      },
+      {
+        "date": "2026-08-06",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b91463.77 via BANK9048 (fuzzy_amount_date, confidence 90%) \u2014 No usable ID in narration; matched on amount (\u0394\u20b91.10) and date (\u03941d)."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1044",
+    "customer": "Nikhil Shah",
+    "gross_amount": 1500.68,
+    "status": "UNRESOLVED",
+    "confidence": 0.0,
+    "summary": "Open thread(s): Main settlement (\u20b91465.27): Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.",
+    "events": [
+      {
+        "date": "2026-08-09",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b91500.68"
+      },
+      {
+        "date": "2026-08-09",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b91500.68"
+      },
+      {
+        "date": "2026-08-09",
+        "kind": "fee",
+        "text": "\u20b935.41 deducted (fee \u20b930.01 + tax \u20b95.4)"
+      },
+      {
+        "date": "2026-08-11",
+        "kind": "unresolved",
+        "text": "No confirmed bank movement for main settlement of \u20b91465.27 \u2014 Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1045",
+    "customer": "Lakshmi Narayan",
+    "gross_amount": 1497.54,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-30",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b91497.54"
+      },
+      {
+        "date": "2026-07-30",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b91497.54"
+      },
+      {
+        "date": "2026-07-30",
+        "kind": "fee",
+        "text": "\u20b935.34 deducted (fee \u20b929.95 + tax \u20b95.39)"
+      },
+      {
+        "date": "2026-07-31",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b91462.2 via BANK9049 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1046",
+    "customer": "Nikhil Shah",
+    "gross_amount": 1498.01,
+    "status": "RECONCILED",
+    "confidence": 1.0,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-06",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b91498.01"
+      },
+      {
+        "date": "2026-07-06",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b91498.01"
+      },
+      {
+        "date": "2026-07-06",
+        "kind": "fee",
+        "text": "\u20b935.35 deducted (fee \u20b929.96 + tax \u20b95.39)"
+      },
+      {
+        "date": "2026-07-07",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b91462.66 via BANK9050 (fuzzy_amount_date, confidence 100%) \u2014 No usable ID in narration; matched on amount (\u0394\u20b90.00) and date (\u03940d)."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1047",
+    "customer": "Rahul Iyer",
+    "gross_amount": 500.36,
+    "status": "RECONCILED",
+    "confidence": 0.93,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-08-09",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b9500.36"
+      },
+      {
+        "date": "2026-08-09",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b9500.36"
+      },
+      {
+        "date": "2026-08-09",
+        "kind": "fee",
+        "text": "\u20b911.81 deducted (fee \u20b910.01 + tax \u20b91.8)"
+      },
+      {
+        "date": "2026-08-18",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b9488.55 via BANK9051 (fuzzy_amount_date, confidence 93%) \u2014 No usable ID in narration; matched on amount (\u0394\u20b90.00) and date (\u03941d)."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1048",
+    "customer": "Priya Menon",
+    "gross_amount": 1999.43,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-08-15",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b91999.43"
+      },
+      {
+        "date": "2026-08-15",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b91999.43"
+      },
+      {
+        "date": "2026-08-15",
+        "kind": "fee",
+        "text": "\u20b947.19 deducted (fee \u20b939.99 + tax \u20b97.2)"
+      },
+      {
+        "date": "2026-08-16",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b91952.24 via BANK9053 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      },
+      {
+        "date": "2026-08-19",
+        "kind": "refund_initiated",
+        "text": "Partial refund of \u20b9419.88 initiated"
+      },
+      {
+        "date": "2026-08-19",
+        "kind": "bank_matched",
+        "text": "Refund debited from bank: \u20b9419.88 via BANK9052 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1049",
+    "customer": "Anjali Gupta",
+    "gross_amount": 1000.4,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-08-08",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b91000.4"
+      },
+      {
+        "date": "2026-08-08",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b91000.4"
+      },
+      {
+        "date": "2026-08-08",
+        "kind": "fee",
+        "text": "\u20b923.61 deducted (fee \u20b920.01 + tax \u20b93.6)"
+      },
+      {
+        "date": "2026-08-10",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b9976.79 via BANK9054 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1050",
+    "customer": "Lakshmi Narayan",
+    "gross_amount": 997.05,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-27",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b9997.05"
+      },
+      {
+        "date": "2026-07-27",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b9997.05"
+      },
+      {
+        "date": "2026-07-27",
+        "kind": "fee",
+        "text": "\u20b923.53 deducted (fee \u20b919.94 + tax \u20b93.59)"
+      },
+      {
+        "date": "2026-08-04",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b9973.52 via BANK9055 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1051",
+    "customer": "Meera Pillai",
+    "gross_amount": 2998.08,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-08-04",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b92998.08"
+      },
+      {
+        "date": "2026-08-04",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b92998.08"
+      },
+      {
+        "date": "2026-08-04",
+        "kind": "fee",
+        "text": "\u20b970.75 deducted (fee \u20b959.96 + tax \u20b910.79)"
+      },
+      {
+        "date": "2026-08-06",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b92927.33 via BANK9056 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1052",
+    "customer": "Karthik Subramanian",
+    "gross_amount": 500.0,
+    "status": "RECONCILED",
+    "confidence": 0.93,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-08-06",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b9500.0"
+      },
+      {
+        "date": "2026-08-06",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b9500.0"
+      },
+      {
+        "date": "2026-08-06",
+        "kind": "fee",
+        "text": "\u20b911.8 deducted (fee \u20b910.0 + tax \u20b91.8)"
+      },
+      {
+        "date": "2026-08-07",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b9488.2 via BANK9057 (fuzzy_amount_date, confidence 93%) \u2014 No usable ID in narration; matched on amount (\u0394\u20b90.00) and date (\u03941d)."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1053",
+    "customer": "Arjun Kumar",
+    "gross_amount": 1000.52,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-08-14",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b91000.52"
+      },
+      {
+        "date": "2026-08-14",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b91000.52"
+      },
+      {
+        "date": "2026-08-14",
+        "kind": "fee",
+        "text": "\u20b923.61 deducted (fee \u20b920.01 + tax \u20b93.6)"
+      },
+      {
+        "date": "2026-08-16",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b9976.91 via BANK9058 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1054",
+    "customer": "Rahul Iyer",
+    "gross_amount": 2998.9,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-08-15",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b92998.9"
+      },
+      {
+        "date": "2026-08-15",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b92998.9"
+      },
+      {
+        "date": "2026-08-15",
+        "kind": "fee",
+        "text": "\u20b970.78 deducted (fee \u20b959.98 + tax \u20b910.8)"
+      },
+      {
+        "date": "2026-08-16",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b92928.12 via BANK9059 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1055",
+    "customer": "Meera Pillai",
+    "gross_amount": 1998.38,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-08-05",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b91998.38"
+      },
+      {
+        "date": "2026-08-05",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b91998.38"
+      },
+      {
+        "date": "2026-08-05",
+        "kind": "fee",
+        "text": "\u20b947.16 deducted (fee \u20b939.97 + tax \u20b97.19)"
+      },
+      {
+        "date": "2026-08-06",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b91951.22 via BANK9060 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1056",
+    "customer": "Meera Pillai",
+    "gross_amount": 4999.76,
+    "status": "RECONCILED",
+    "confidence": 1.0,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-13",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b94999.76"
+      },
+      {
+        "date": "2026-07-13",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b94999.76"
+      },
+      {
+        "date": "2026-07-13",
+        "kind": "fee",
+        "text": "\u20b9118.0 deducted (fee \u20b9100.0 + tax \u20b918.0)"
+      },
+      {
+        "date": "2026-07-15",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b94881.76 via BANK9061 (fuzzy_amount_date, confidence 100%) \u2014 No usable ID in narration; matched on amount (\u0394\u20b90.00) and date (\u03940d)."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1057",
+    "customer": "Sneha Pillai",
+    "gross_amount": 498.44,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for. Duplicate webhook detected and excluded \u2014 did not affect the money movement.",
+    "events": [
+      {
+        "date": "2026-07-20",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b9498.44"
+      },
+      {
+        "date": "2026-07-20",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b9498.44"
+      },
+      {
+        "date": "2026-07-20",
+        "kind": "fee",
+        "text": "\u20b911.76 deducted (fee \u20b99.97 + tax \u20b91.79)"
+      },
+      {
+        "date": "2026-07-21",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b9486.68 via BANK9063 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      },
+      {
+        "date": "2026-07-21",
+        "kind": "duplicate",
+        "text": "Duplicate settlement webhook detected for \u20b9486.68 \u2014 no second bank credit expected, ignored in reconciliation."
+      },
+      {
+        "date": "2026-07-22",
+        "kind": "refund_initiated",
+        "text": "Full refund of \u20b9498.44 initiated"
+      },
+      {
+        "date": "2026-07-22",
+        "kind": "bank_matched",
+        "text": "Refund debited from bank: \u20b9498.44 via BANK9062 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1058",
+    "customer": "Arjun Kumar",
+    "gross_amount": 500.86,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-17",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b9500.86"
+      },
+      {
+        "date": "2026-07-17",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b9500.86"
+      },
+      {
+        "date": "2026-07-17",
+        "kind": "fee",
+        "text": "\u20b911.82 deducted (fee \u20b910.02 + tax \u20b91.8)"
+      },
+      {
+        "date": "2026-07-18",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b9489.04 via BANK9064 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1059",
+    "customer": "Anjali Gupta",
+    "gross_amount": 2000.8,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-06",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b92000.8"
+      },
+      {
+        "date": "2026-07-06",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b92000.8"
+      },
+      {
+        "date": "2026-07-06",
+        "kind": "fee",
+        "text": "\u20b947.22 deducted (fee \u20b940.02 + tax \u20b97.2)"
+      },
+      {
+        "date": "2026-07-14",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b91953.58 via BANK9065 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1060",
+    "customer": "Karthik Subramanian",
+    "gross_amount": 1000.44,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-28",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b91000.44"
+      },
+      {
+        "date": "2026-07-28",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b91000.44"
+      },
+      {
+        "date": "2026-07-28",
+        "kind": "fee",
+        "text": "\u20b923.61 deducted (fee \u20b920.01 + tax \u20b93.6)"
+      },
+      {
+        "date": "2026-07-30",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b9976.83 via BANK9066 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1061",
+    "customer": "Vikram Nair",
+    "gross_amount": 497.96,
+    "status": "RECONCILED",
+    "confidence": 0.87,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-08-05",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b9497.96"
+      },
+      {
+        "date": "2026-08-05",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b9497.96"
+      },
+      {
+        "date": "2026-08-05",
+        "kind": "fee",
+        "text": "\u20b911.75 deducted (fee \u20b99.96 + tax \u20b91.79)"
+      },
+      {
+        "date": "2026-08-13",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b9486.21 via BANK9068 (fuzzy_amount_date, confidence 88%) \u2014 No usable ID in narration; matched on amount (\u0394\u20b91.75) and date (\u03941d)."
+      },
+      {
+        "date": "2026-08-17",
+        "kind": "refund_initiated",
+        "text": "Full refund of \u20b9497.96 initiated"
+      },
+      {
+        "date": "2026-08-17",
+        "kind": "bank_matched",
+        "text": "Refund debited from bank: \u20b9497.96 via BANK9067 (fuzzy_amount_date, confidence 87%) \u2014 No usable ID in narration; matched on amount (\u0394\u20b90.00) and date (\u03942d)."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1062",
+    "customer": "Lakshmi Narayan",
+    "gross_amount": 1999.64,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-13",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b91999.64"
+      },
+      {
+        "date": "2026-07-13",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b91999.64"
+      },
+      {
+        "date": "2026-07-13",
+        "kind": "fee",
+        "text": "\u20b947.19 deducted (fee \u20b939.99 + tax \u20b97.2)"
+      },
+      {
+        "date": "2026-07-14",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b91952.45 via BANK9069 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1063",
+    "customer": "Nikhil Shah",
+    "gross_amount": 2000.68,
+    "status": "RECONCILED",
+    "confidence": 0.8,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-29",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b92000.68"
+      },
+      {
+        "date": "2026-07-29",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b92000.68"
+      },
+      {
+        "date": "2026-07-29",
+        "kind": "fee",
+        "text": "\u20b947.21 deducted (fee \u20b940.01 + tax \u20b97.2)"
+      },
+      {
+        "date": "2026-07-31",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b91953.47 via BANK9071+BANK9072 (split_bank_entries, confidence 80%) \u2014 Settlement amount matches the SUM of two unmatched bank entries within window."
+      },
+      {
+        "date": "2026-08-04",
+        "kind": "refund_initiated",
+        "text": "Partial refund of \u20b9700.24 initiated"
+      },
+      {
+        "date": "2026-08-04",
+        "kind": "bank_matched",
+        "text": "Refund debited from bank: \u20b9700.24 via BANK9070 (fuzzy_amount_date, confidence 87%) \u2014 No usable ID in narration; matched on amount (\u0394\u20b90.00) and date (\u03942d)."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1064",
+    "customer": "Anjali Gupta",
+    "gross_amount": 4997.7,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-08-03",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b94997.7"
+      },
+      {
+        "date": "2026-08-03",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b94997.7"
+      },
+      {
+        "date": "2026-08-03",
+        "kind": "fee",
+        "text": "\u20b9117.94 deducted (fee \u20b999.95 + tax \u20b917.99)"
+      },
+      {
+        "date": "2026-08-04",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b94879.76 via BANK9073 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1065",
+    "customer": "Divya Krishnan",
+    "gross_amount": 998.28,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-07",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b9998.28"
+      },
+      {
+        "date": "2026-07-07",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b9998.28"
+      },
+      {
+        "date": "2026-07-07",
+        "kind": "fee",
+        "text": "\u20b923.56 deducted (fee \u20b919.97 + tax \u20b93.59)"
+      },
+      {
+        "date": "2026-07-09",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b9974.72 via BANK9074 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1066",
+    "customer": "Vikram Nair",
+    "gross_amount": 998.01,
+    "status": "UNRESOLVED",
+    "confidence": 0.0,
+    "summary": "Open thread(s): Main settlement (\u20b9974.46): Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.",
+    "events": [
+      {
+        "date": "2026-07-08",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b9998.01"
+      },
+      {
+        "date": "2026-07-08",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b9998.01"
+      },
+      {
+        "date": "2026-07-08",
+        "kind": "fee",
+        "text": "\u20b923.55 deducted (fee \u20b919.96 + tax \u20b93.59)"
+      },
+      {
+        "date": "2026-07-10",
+        "kind": "unresolved",
+        "text": "No confirmed bank movement for main settlement of \u20b9974.46 \u2014 Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1067",
+    "customer": "Nikhil Shah",
+    "gross_amount": 1998.85,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-04",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b91998.85"
+      },
+      {
+        "date": "2026-07-04",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b91998.85"
+      },
+      {
+        "date": "2026-07-04",
+        "kind": "fee",
+        "text": "\u20b947.18 deducted (fee \u20b939.98 + tax \u20b97.2)"
+      },
+      {
+        "date": "2026-07-06",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b91951.67 via BANK9075 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1068",
+    "customer": "Sneha Pillai",
+    "gross_amount": 1500.52,
+    "status": "RECONCILED",
+    "confidence": 0.8,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-08-01",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b91500.52"
+      },
+      {
+        "date": "2026-08-01",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b91500.52"
+      },
+      {
+        "date": "2026-08-01",
+        "kind": "fee",
+        "text": "\u20b935.41 deducted (fee \u20b930.01 + tax \u20b95.4)"
+      },
+      {
+        "date": "2026-08-03",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b91465.11 via BANK9077+BANK9078 (split_bank_entries, confidence 80%) \u2014 Settlement amount matches the SUM of two unmatched bank entries within window."
+      },
+      {
+        "date": "2026-08-06",
+        "kind": "refund_initiated",
+        "text": "Partial refund of \u20b9615.21 initiated"
+      },
+      {
+        "date": "2026-08-06",
+        "kind": "bank_matched",
+        "text": "Refund debited from bank: \u20b9615.21 via BANK9076 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1069",
+    "customer": "Nikhil Shah",
+    "gross_amount": 1500.92,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-07-16",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b91500.92"
+      },
+      {
+        "date": "2026-07-16",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b91500.92"
+      },
+      {
+        "date": "2026-07-16",
+        "kind": "fee",
+        "text": "\u20b935.42 deducted (fee \u20b930.02 + tax \u20b95.4)"
+      },
+      {
+        "date": "2026-07-23",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b91465.5 via BANK9079 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1070",
+    "customer": "Anjali Gupta",
+    "gross_amount": 4998.66,
+    "status": "RECONCILED",
+    "confidence": 0.93,
+    "summary": "Full lifecycle accounted for.",
+    "events": [
+      {
+        "date": "2026-08-02",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b94998.66"
+      },
+      {
+        "date": "2026-08-02",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b94998.66"
+      },
+      {
+        "date": "2026-08-02",
+        "kind": "fee",
+        "text": "\u20b9117.96 deducted (fee \u20b999.97 + tax \u20b917.99)"
+      },
+      {
+        "date": "2026-08-11",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b94880.7 via BANK9080 (fuzzy_amount_date, confidence 93%) \u2014 No usable ID in narration; matched on amount (\u0394\u20b90.00) and date (\u03941d)."
+      }
+    ]
+  }
+]

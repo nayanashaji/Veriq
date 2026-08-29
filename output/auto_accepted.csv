@@ -1,0 +1,74 @@
+settlement_id,order_id,match_type,matched_bank_txn_ids,confidence,amount_diff,notes
+SETL5001,ORD1001,exact_id,BANK9001,0.99,2.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5003,ORD1003,exact_id,BANK9003,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5004,ORD1004,exact_id,BANK9005,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5008,ORD1007,exact_id,BANK9008,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5011,ORD1010,exact_id,BANK9011,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5012,ORD1011,exact_id,BANK9012,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5013,ORD1012,exact_id,BANK9013,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5015,ORD1013,exact_id,BANK9014,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5016,ORD1014,exact_id,BANK9015,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5019,ORD1016,exact_id,BANK9017,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5021,ORD1018,exact_id,BANK9019,0.99,0.9,Order ID found in bank narration; amount and date within tolerance.
+SETL5022,ORD1019,exact_id,BANK9020,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5024,ORD1021,exact_id,BANK9022,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5026,ORD1022,exact_id,BANK9023,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5027,ORD1023,exact_id,BANK9024,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5028,ORD1024,exact_id,BANK9025,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5031,ORD1026,exact_id,BANK9027,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5035,ORD1029,exact_id,BANK9032,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5036,ORD1030,exact_id,BANK9033,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5037,ORD1031,exact_id,BANK9034,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5038,ORD1032,exact_id,BANK9036,0.99,2.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5040,ORD1033,exact_id,BANK9037,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5041,ORD1034,exact_id,BANK9038,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5042,ORD1035,exact_id,BANK9039,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5045,ORD1037,exact_id,BANK9041,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5046,ORD1038,exact_id,BANK9042,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5047,ORD1039,exact_id,BANK9043,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5048,ORD1040,exact_id,BANK9044,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5049,ORD1041,exact_id,BANK9045,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5054,ORD1045,exact_id,BANK9049,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5057,ORD1048,exact_id,BANK9053,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5059,ORD1049,exact_id,BANK9054,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5060,ORD1050,exact_id,BANK9055,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5061,ORD1051,exact_id,BANK9056,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5063,ORD1053,exact_id,BANK9058,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5064,ORD1054,exact_id,BANK9059,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5065,ORD1055,exact_id,BANK9060,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5067,ORD1057,exact_id,BANK9063,0.99,1.1,Order ID found in bank narration; amount and date within tolerance.
+SETL5070,ORD1058,exact_id,BANK9064,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5071,ORD1059,exact_id,BANK9065,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5072,ORD1060,exact_id,BANK9066,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5075,ORD1062,exact_id,BANK9069,0.99,1.75,Order ID found in bank narration; amount and date within tolerance.
+SETL5078,ORD1064,exact_id,BANK9073,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5079,ORD1065,exact_id,BANK9074,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5081,ORD1067,exact_id,BANK9075,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5084,ORD1069,exact_id,BANK9079,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5002,ORD1002,fuzzy_amount_date,BANK9002,1.0,0.0,No usable ID in narration; matched on amount (Δ₹0.00) and date (Δ0d).
+SETL5007,ORD1006,fuzzy_amount_date,BANK9007,1.0,0.0,No usable ID in narration; matched on amount (Δ₹0.00) and date (Δ0d).
+SETL5009,ORD1008,fuzzy_amount_date,BANK9009,1.0,0.0,No usable ID in narration; matched on amount (Δ₹0.00) and date (Δ0d).
+SETL5023,ORD1020,fuzzy_amount_date,BANK9021,1.0,0.0,No usable ID in narration; matched on amount (Δ₹0.00) and date (Δ0d).
+SETL5029,ORD1025,fuzzy_amount_date,BANK9026,1.0,0.0,No usable ID in narration; matched on amount (Δ₹0.00) and date (Δ0d).
+SETL5032,ORD1027,fuzzy_amount_date,BANK9028,1.0,0.0,No usable ID in narration; matched on amount (Δ₹0.00) and date (Δ0d).
+SETL5055,ORD1046,fuzzy_amount_date,BANK9050,1.0,0.0,No usable ID in narration; matched on amount (Δ₹0.00) and date (Δ0d).
+SETL5066,ORD1056,fuzzy_amount_date,BANK9061,1.0,0.0,No usable ID in narration; matched on amount (Δ₹0.00) and date (Δ0d).
+SETL5010,ORD1009,fuzzy_amount_date,BANK9010,0.93,0.0,No usable ID in narration; matched on amount (Δ₹0.00) and date (Δ1d).
+SETL5050,ORD1042,fuzzy_amount_date,BANK9047,0.93,0.0,No usable ID in narration; matched on amount (Δ₹0.00) and date (Δ1d).
+SETL5056,ORD1047,fuzzy_amount_date,BANK9051,0.93,0.0,No usable ID in narration; matched on amount (Δ₹0.00) and date (Δ1d).
+SETL5062,ORD1052,fuzzy_amount_date,BANK9057,0.93,0.0,No usable ID in narration; matched on amount (Δ₹0.00) and date (Δ1d).
+SETL5085,ORD1070,fuzzy_amount_date,BANK9080,0.93,0.0,No usable ID in narration; matched on amount (Δ₹0.00) and date (Δ1d).
+SETL5017,ORD1015,fuzzy_amount_date,BANK9016,0.92,2.5,No usable ID in narration; matched on amount (Δ₹2.50) and date (Δ0d).
+SETL5052,ORD1043,fuzzy_amount_date,BANK9048,0.9,1.1,No usable ID in narration; matched on amount (Δ₹1.10) and date (Δ1d).
+SETL5073,ORD1061,fuzzy_amount_date,BANK9068,0.88,1.75,No usable ID in narration; matched on amount (Δ₹1.75) and date (Δ1d).
+SETL5020,ORD1017,fuzzy_amount_date,BANK9018,0.87,2.0,No usable ID in narration; matched on amount (Δ₹2.00) and date (Δ1d).
+SETL5005,ORD1004,exact_id,BANK9004,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5039,ORD1032,exact_id,BANK9035,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5044,ORD1036,exact_id,BANK9040,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5051,ORD1042,exact_id,BANK9046,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5058,ORD1048,exact_id,BANK9052,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5069,ORD1057,exact_id,BANK9062,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5083,ORD1068,exact_id,BANK9076,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5034,ORD1028,fuzzy_amount_date,BANK9029,0.96,1.25,No usable ID in narration; matched on amount (Δ₹1.25) and date (Δ0d).
+SETL5074,ORD1061,fuzzy_amount_date,BANK9067,0.87,0.0,No usable ID in narration; matched on amount (Δ₹0.00) and date (Δ2d).
+SETL5077,ORD1063,fuzzy_amount_date,BANK9070,0.87,0.0,No usable ID in narration; matched on amount (Δ₹0.00) and date (Δ2d).

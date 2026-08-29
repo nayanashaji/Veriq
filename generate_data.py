@@ -1,27 +1,29 @@
 """
-generate_data.py
------------------
-Creates 3 synthetic CSV sources that a real merchant would have to reconcile:
-
-  1. order_ledger.csv       - the merchant's internal source of truth
-  2. razorpay_settlement.csv - what Razorpay SAYS it settled
-  3. bank_statement.csv      - what actually landed in the bank
-
-Deliberately injects the mismatch patterns that make reconciliation hard:
-  - delayed settlements (bank credit arrives days later)
-  - rounding / fee-recalculation differences (bank amount != stated net amount)
-  - duplicate settlement rows (double webhook, only paid once)
-  - split bank credits (one settlement split across two bank lines)
-  - missing bank entries (settlement recorded, money never arrived)
-  - narration noise (order ID sometimes present in bank narration, sometimes not)
+generate_data.py (v2)
+----------------------
+Adds three things over v1:
+  1. Ground truth: every bank row is tagged with the settlement it's REALLY
+     tied to (true_settlement_id), and a separate ground_truth.csv records,
+     for every settlement, whether it should match anything at all and to
+     which bank row(s). This lets reconcile.py report actual precision/recall,
+     not just "% matched".
+  2. Debit-side rows: refunds and partial refunds now generate a matching
+     bank DEBIT row (negative amount), so the engine has something real to
+     match refund settlement legs against instead of dumping them all into
+     exceptions.
+  3. Decimal money math throughout, so any rounding mismatch you see in the
+     output is one we deliberately injected — not an artifact of float math.
 
 Run: python generate_data.py
-Output: ./data/order_ledger.csv, ./data/razorpay_settlement.csv, ./data/bank_statement.csv
+Output: ./data/order_ledger.csv, ./data/razorpay_settlement.csv,
+        ./data/bank_statement.csv, ./data/ground_truth.csv
 """
 
 import random
-import pandas as pd
+import os
+from decimal import Decimal, ROUND_HALF_UP
 from datetime import datetime, timedelta
+import pandas as pd
 
 random.seed(42)
 
@@ -34,165 +36,161 @@ CUSTOMERS = [
     "Rohan Varma", "Lakshmi Narayan", "Suresh Babu", "Anjali Gupta", "Nikhil Shah",
 ]
 
+def D(x):
+    """Convert to a 2-decimal-place Decimal. All money math goes through this."""
+    return Decimal(str(x)).quantize(Decimal("0.01"), rounding=ROUND_HALF_UP)
+
 def rand_date(base, max_offset_days=45):
     return base + timedelta(days=random.randint(0, max_offset_days))
 
-def money(x):
-    return round(x, 2)
+os.makedirs("data", exist_ok=True)
+orders, settlements, bank_rows, ground_truth = [], [], [], []
 
-orders = []
-settlements = []
-bank_rows = []
-
-order_counter = 1000
-settlement_counter = 5000
-bank_counter = 9000
+order_counter, settlement_counter, bank_counter = 1000, 5000, 9000
 
 for i in range(N_ORDERS):
     order_counter += 1
     order_id = f"ORD{order_counter}"
     customer = random.choice(CUSTOMERS)
-    gross_amount = money(random.choice([249, 499, 999, 1499, 1999, 2999, 4999]) + random.uniform(-2, 2))
+    gross_amount = D(random.choice([249, 499, 999, 1499, 1999, 2999, 4999]) + random.uniform(-2, 2))
     order_date = rand_date(START_DATE)
 
     r = random.random()
-    if r < 0.08:
-        status = "refunded"
-    elif r < 0.14:
-        status = "partial_refund"
-    else:
-        status = "paid"
+    status = "refunded" if r < 0.08 else "partial_refund" if r < 0.14 else "paid"
 
     orders.append({
-        "order_id": order_id,
-        "customer": customer,
-        "gross_amount": gross_amount,
-        "order_date": order_date.strftime("%Y-%m-%d"),
-        "status": status,
+        "order_id": order_id, "customer": customer, "gross_amount": str(gross_amount),
+        "order_date": order_date.strftime("%Y-%m-%d"), "status": status,
     })
 
-    # ---- Razorpay settlement leg(s) for this order ----
-    fee = money(gross_amount * 0.02)
-    tax_on_fee = money(fee * 0.18)
-    net_amount = money(gross_amount - fee - tax_on_fee)
+    # ---- main settlement leg ----
+    fee = D(gross_amount * Decimal("0.02"))
+    tax_on_fee = D(fee * Decimal("0.18"))
+    net_amount = D(gross_amount - fee - tax_on_fee)
 
-    delay_days = random.choice([1, 1, 1, 2, 2] + [7, 8, 9] if random.random() < 0.15 else [1, 1, 2])
+    delay_days = random.choice([7, 8, 9]) if random.random() < 0.15 else random.choice([1, 1, 1, 2, 2])
     settlement_date = order_date + timedelta(days=delay_days)
 
     settlement_counter += 1
     settlement_id = f"SETL{settlement_counter}"
     settlements.append({
-        "settlement_id": settlement_id,
-        "order_id": order_id,
-        "gross_amount": gross_amount,
-        "fee": fee,
-        "tax": tax_on_fee,
-        "net_amount": net_amount,
-        "settlement_date": settlement_date.strftime("%Y-%m-%d"),
+        "settlement_id": settlement_id, "order_id": order_id,
+        "gross_amount": str(gross_amount), "fee": str(fee), "tax": str(tax_on_fee),
+        "net_amount": str(net_amount), "settlement_date": settlement_date.strftime("%Y-%m-%d"),
         "type": "settlement",
     })
 
-    # inject: ~5% duplicate webhook -> extra settlement row, but bank pays only once
+    # inject: duplicate webhook -> a second settlement row that NO bank credit will ever back
     is_duplicate_case = random.random() < 0.06
     if is_duplicate_case:
         settlement_counter += 1
+        dup_id = f"SETL{settlement_counter}"
         settlements.append({
-            "settlement_id": f"SETL{settlement_counter}",
-            "order_id": order_id,
-            "gross_amount": gross_amount,
-            "fee": fee,
-            "tax": tax_on_fee,
-            "net_amount": net_amount,
-            "settlement_date": settlement_date.strftime("%Y-%m-%d"),
+            "settlement_id": dup_id, "order_id": order_id,
+            "gross_amount": str(gross_amount), "fee": str(fee), "tax": str(tax_on_fee),
+            "net_amount": str(net_amount), "settlement_date": settlement_date.strftime("%Y-%m-%d"),
             "type": "duplicate_settlement",
         })
+        ground_truth.append({"settlement_id": dup_id, "true_bank_txn_ids": "", "should_match": False,
+                              "reason": "duplicate webhook - no bank credit exists for this row"})
 
-    # refund leg
+    # ---- refund / partial refund legs (debit side) ----
+    refund_amount = None
     if status == "refunded":
-        settlement_counter += 1
-        settlements.append({
-            "settlement_id": f"SETL{settlement_counter}",
-            "order_id": order_id,
-            "gross_amount": -gross_amount,
-            "fee": 0,
-            "tax": 0,
-            "net_amount": -gross_amount,
-            "settlement_date": (settlement_date + timedelta(days=random.randint(1, 4))).strftime("%Y-%m-%d"),
-            "type": "refund",
-        })
+        refund_amount = gross_amount
     elif status == "partial_refund":
-        partial = money(gross_amount * random.uniform(0.2, 0.5))
+        refund_amount = D(gross_amount * Decimal(str(round(random.uniform(0.2, 0.5), 2))))
+
+    if refund_amount is not None:
         settlement_counter += 1
+        refund_settlement_id = f"SETL{settlement_counter}"
+        refund_date = settlement_date + timedelta(days=random.randint(1, 4))
         settlements.append({
-            "settlement_id": f"SETL{settlement_counter}",
-            "order_id": order_id,
-            "gross_amount": -partial,
-            "fee": 0,
-            "tax": 0,
-            "net_amount": -partial,
-            "settlement_date": (settlement_date + timedelta(days=random.randint(1, 4))).strftime("%Y-%m-%d"),
-            "type": "partial_refund",
+            "settlement_id": refund_settlement_id, "order_id": order_id,
+            "gross_amount": str(-refund_amount), "fee": "0", "tax": "0",
+            "net_amount": str(-refund_amount), "settlement_date": refund_date.strftime("%Y-%m-%d"),
+            "type": "refund" if status == "refunded" else "partial_refund",
         })
 
-    # ---- Bank leg(s) : what actually happened to the main settlement ----
-    missing_case = random.random() < 0.07  # money never arrived / stuck
+        # does the refund debit actually clear the bank, or is it also stuck? (~10% missing)
+        refund_missing = random.random() < 0.10
+        if refund_missing:
+            ground_truth.append({"settlement_id": refund_settlement_id, "true_bank_txn_ids": "",
+                                  "should_match": False, "reason": "refund debit never cleared the bank"})
+        else:
+            bank_amount = -refund_amount
+            if random.random() < 0.10:  # rounding noise on refunds too
+                bank_amount = D(bank_amount + Decimal(random.choice(["-1.50", "1.25", "-0.75"])))
+            bank_counter += 1
+            debit_id = f"BANK{bank_counter}"
+            include_id = random.random() < 0.6
+            narration = (f"NEFT/RAZORPAY/REFUND/{order_id}" if include_id else "RZRPAY REFUND DR")
+            bank_rows.append({
+                "bank_txn_id": debit_id, "amount": str(bank_amount),
+                "value_date": (refund_date + timedelta(days=random.randint(0, 2))).strftime("%Y-%m-%d"),
+                "narration": narration, "true_settlement_id": refund_settlement_id,
+            })
+            ground_truth.append({"settlement_id": refund_settlement_id, "true_bank_txn_ids": debit_id,
+                                  "should_match": True, "reason": ""})
+
+    # ---- bank credit leg(s) for the MAIN settlement ----
+    missing_case = random.random() < 0.07
     split_case = (not missing_case) and status == "partial_refund" and random.random() < 0.5
     rounding_noise_case = (not missing_case) and random.random() < 0.12
 
-    if is_duplicate_case:
-        # bank only ever pays once, even though Razorpay shows 2 settlement rows
-        pass  # the single bank credit below covers the *real* settlement
-
-    if not missing_case:
+    if missing_case:
+        ground_truth.append({"settlement_id": settlement_id, "true_bank_txn_ids": "",
+                              "should_match": False, "reason": "settlement never credited to bank"})
+    else:
         bank_amount = net_amount
         if rounding_noise_case:
-            bank_amount = money(net_amount + random.choice([-2.5, -1.75, 1.1, 2.0, -0.9]))
+            bank_amount = D(bank_amount + Decimal(random.choice(["-2.50", "-1.75", "1.10", "2.00", "-0.90"])))
 
         bank_date = settlement_date + timedelta(days=random.choice([0, 0, 1, 1, 2]))
-        include_id_in_narration = random.random() < 0.65  # ~35% of narrations are generic, no ID
-
-        narration = (
-            f"NEFT/RAZORPAY/{order_id}/SETL" if include_id_in_narration
-            else "RZRPAY SETTLEMENT CR"
-        )
+        include_id = random.random() < 0.65
+        narration = f"NEFT/RAZORPAY/{order_id}/SETL" if include_id else "RZRPAY SETTLEMENT CR"
 
         if split_case:
-            part1 = money(bank_amount * random.uniform(0.4, 0.6))
-            part2 = money(bank_amount - part1)
+            part1 = D(bank_amount * Decimal(str(round(random.uniform(0.4, 0.6), 2))))
+            part2 = D(bank_amount - part1)
+            ids = []
             for part in (part1, part2):
                 bank_counter += 1
+                bid = f"BANK{bank_counter}"
+                ids.append(bid)
                 bank_rows.append({
-                    "bank_txn_id": f"BANK{bank_counter}",
-                    "amount": part,
+                    "bank_txn_id": bid, "amount": str(part),
                     "value_date": (bank_date + timedelta(days=random.randint(0, 1))).strftime("%Y-%m-%d"),
-                    "narration": narration + " (split)",
+                    "narration": narration + " (split)", "true_settlement_id": settlement_id,
                 })
+            ground_truth.append({"settlement_id": settlement_id, "true_bank_txn_ids": ";".join(ids),
+                                  "should_match": True, "reason": ""})
         else:
             bank_counter += 1
+            bid = f"BANK{bank_counter}"
             bank_rows.append({
-                "bank_txn_id": f"BANK{bank_counter}",
-                "amount": bank_amount,
+                "bank_txn_id": bid, "amount": str(bank_amount),
                 "value_date": bank_date.strftime("%Y-%m-%d"),
-                "narration": narration,
+                "narration": narration, "true_settlement_id": settlement_id,
             })
+            ground_truth.append({"settlement_id": settlement_id, "true_bank_txn_ids": bid,
+                                  "should_match": True, "reason": ""})
 
-# a couple of totally unexplained bank credits (e.g. a stray NEFT, cashback) — not tied to any settlement
+# a few unexplained bank credits with no ground-truth settlement behind them at all
 for _ in range(3):
     bank_counter += 1
     bank_rows.append({
-        "bank_txn_id": f"BANK{bank_counter}",
-        "amount": money(random.uniform(100, 800)),
+        "bank_txn_id": f"BANK{bank_counter}", "amount": str(D(random.uniform(100, 800))),
         "value_date": rand_date(START_DATE).strftime("%Y-%m-%d"),
-        "narration": "UNKNOWN CREDIT - BANK REF",
+        "narration": "UNKNOWN CREDIT - BANK REF", "true_settlement_id": "",
     })
 
-orders_df = pd.DataFrame(orders)
-settlements_df = pd.DataFrame(settlements)
-bank_df = pd.DataFrame(bank_rows)
+pd.DataFrame(orders).to_csv("data/order_ledger.csv", index=False)
+pd.DataFrame(settlements).to_csv("data/razorpay_settlement.csv", index=False)
+pd.DataFrame(bank_rows).to_csv("data/bank_statement.csv", index=False)
+pd.DataFrame(ground_truth).to_csv("data/ground_truth.csv", index=False)
 
-orders_df.to_csv("data/order_ledger.csv", index=False)
-settlements_df.to_csv("data/razorpay_settlement.csv", index=False)
-bank_df.to_csv("data/bank_statement.csv", index=False)
-
-print(f"Generated {len(orders_df)} orders, {len(settlements_df)} settlement rows, {len(bank_df)} bank rows")
-print("Files written to ./data/")
+print(f"Generated {len(orders)} orders, {len(settlements)} settlement rows, "
+      f"{len(bank_rows)} bank rows, {len(ground_truth)} ground-truth labels")
+print("Files written to ./data/  (ground_truth.csv is the held-out answer key — "
+      "reconcile.py never reads it while matching, only when scoring itself)")

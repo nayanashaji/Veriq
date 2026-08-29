@@ -1,9 +1,13 @@
-# Reconciliation Agent
+# Veriq — AI-Powered Multi-Source Reconciliation
 
-Matches Razorpay settlement records against bank statement entries in staged
-passes (exact → fuzzy → split → LLM-assisted), and produces an honest
-exception list for whatever can't be confidently matched — instead of
-force-matching everything to inflate the number.
+> Don't just match transactions. Understand them.
+
+Veriq reconciles internal ledger, Razorpay settlement, and bank-statement
+records in staged passes (exact → fuzzy → split → AI-assisted). When a direct
+match is ambiguous, it reconstructs the transaction lifecycle—fees, refunds,
+duplicates, and split movements—to resolve the reconciliation case. Anything
+it cannot support confidently becomes an explicit, classified exception rather
+than a forced match.
 
 ## Setup
 
@@ -31,9 +35,12 @@ Stage 4 (LLM-assisted matching for the hardest remaining cases).
 python generate_data.py   # creates data/order_ledger.csv, razorpay_settlement.csv, bank_statement.csv
 python reconcile.py       # runs the matching engine -> output/*.csv, output/summary.json
 python dashboard.py       # builds output/report.html
+python traction_story.py  # builds output/story_report.html with lifecycle explanations
 ```
 
-Open `output/report.html` in a browser to see the dashboard.
+Open `output/report.html` for the reconciliation scorecard and
+`output/story_report.html` for the explainable lifecycle evidence behind each
+reconciliation verdict.
 
 ## Turning on LLM-assisted matching (Stage 4, optional)
 
@@ -51,7 +58,8 @@ python reconcile.py
 |---|---|
 | `generate_data.py` | Builds 3 synthetic CSVs with realistic mismatch patterns: delayed settlements, fee-rounding differences, duplicate webhooks, split bank credits, missing payouts, and inconsistent bank narrations. Swap this out for real exports once you have merchant data. |
 | `reconcile.py` | The matching engine. Stage 1: order ID found in bank narration + amount/date match. Stage 2: greedy fuzzy match on amount+date for rows with no ID in the narration. Stage 3: checks if a settlement equals the sum of two unmatched bank rows (split refunds etc.). Stage 4 (optional): asks Claude to reason about the hardest remaining cases. Everything left over becomes a classified exception, never a forced match. |
-| `dashboard.py` | Renders `output/summary.json` + the CSVs into a single static `report.html` — match rate, breakdown by match type, and the full exception table. |
+| `dashboard.py` | Renders `output/summary.json` + the CSVs into a static reconciliation scorecard: volume, match rate, precision/recall, match types, and exceptions. |
+| `traction_story.py` | Renders lifecycle explanations for each reconciliation verdict. This is the evidence layer for difficult cases, not a separate forensics product. |
 
 ## Output files (in `output/`)
 
