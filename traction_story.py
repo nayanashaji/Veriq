@@ -43,9 +43,13 @@ def load_match_lookup():
 
 LEG_LABELS = {
     "settlement": "Main settlement",
+    "split_payment": "Split payment leg",
     "duplicate_settlement": "Duplicate settlement webhook",
     "refund": "Full refund",
     "partial_refund": "Partial refund",
+    "chargeback": "Chargeback",
+    "settlement_adjustment": "Settlement adjustment",
+    "cashback_adjustment": "Cashback credit",
 }
 
 
@@ -61,16 +65,17 @@ def build_story(order_id, order_row, legs_df, match_lookup):
     total_relevant_legs = 0
     resolved_legs = 0
     duplicate_flagged = False
+    lifecycle_net = 0.0
 
     legs_sorted = legs_df.sort_values("settlement_date")
     for _, leg in legs_sorted.iterrows():
         label = LEG_LABELS.get(leg["type"], leg["type"])
         net = leg["net_amount"]
 
-        if leg["type"] == "settlement":
+        if leg["type"] in ("settlement", "split_payment"):
             events.append({
                 "date": order_row["order_date"], "kind": "captured",
-                "text": f"Razorpay captured ₹{leg['gross_amount']}",
+                "text": f"Razorpay captured ₹{leg['gross_amount']}" + (" as one split-payment leg" if leg["type"] == "split_payment" else ""),
             })
             fee_total = round(float(leg["fee"]) + float(leg["tax"]), 2)
             if fee_total > 0:
@@ -89,18 +94,24 @@ def build_story(order_id, order_row, legs_df, match_lookup):
             continue  # duplicates don't count toward resolved/unresolved totals
 
         total_relevant_legs += 1
+        lifecycle_net += float(net)
         info = match_lookup.get(leg["settlement_id"])
 
-        if leg["type"] in ("refund", "partial_refund"):
+        if leg["type"] in ("refund", "partial_refund", "chargeback"):
             events.append({
-                "date": leg["settlement_date"], "kind": "refund_initiated",
-                "text": f"{label} of ₹{abs(net)} initiated",
+                "date": leg["settlement_date"], "kind": "chargeback" if leg["type"] == "chargeback" else "refund_initiated",
+                "text": (f"Chargeback of ₹{abs(net)} recorded — distinct from a customer refund" if leg["type"] == "chargeback"
+                         else f"{label} of ₹{abs(net)} initiated"),
             })
+        elif leg["type"] in ("settlement_adjustment", "cashback_adjustment"):
+            events.append({"date": leg["settlement_date"], "kind": "adjustment",
+                           "text": f"{label}: {'+' if float(net) > 0 else ''}₹{net} recorded as a separate lifecycle event."})
 
         if info and info["status"] == "matched":
             resolved_legs += 1
             relevant_confidences.append(info["confidence"])
-            verb = "Refund debited from bank" if net < 0 else "Settled to bank"
+            verb = ("Chargeback debited from bank" if leg["type"] == "chargeback" else
+                    "Refund debited from bank" if net < 0 else "Settled to bank")
             events.append({
                 "date": leg["settlement_date"], "kind": "bank_matched",
                 "text": f"{verb}: ₹{abs(net)} via {info['bank_txn_ids']} "
@@ -135,6 +146,7 @@ def build_story(order_id, order_row, legs_df, match_lookup):
     summary_bits = []
     if status == "RECONCILED":
         summary_bits.append("Full lifecycle accounted for.")
+    summary_bits.append(f"Net lifecycle movement: ₹{lifecycle_net:.2f}.")
     if duplicate_flagged:
         summary_bits.append("Duplicate webhook detected and excluded — did not affect the money movement.")
     if unresolved_notes:
@@ -157,7 +169,9 @@ def main():
     match_lookup = load_match_lookup()
 
     stories = []
-    for _, order_row in orders.iterrows():
+    # Duplicate ledger entries are reported by reconcile.py as explicit
+    # exceptions; render a single lifecycle rather than two fake transactions.
+    for _, order_row in orders.drop_duplicates("order_id").iterrows():
         legs = settlements[settlements["order_id"] == order_row["order_id"]]
         stories.append(build_story(order_row["order_id"], order_row, legs, match_lookup))
 
@@ -181,6 +195,7 @@ def main():
 def render_html(stories, status_counts, reconciliation_summary):
     KIND_ICONS = {
         "order_placed": "🛒", "captured": "💳", "fee": "➖", "refund_initiated": "↩️",
+        "chargeback": "⚖️", "adjustment": "🧾",
         "bank_matched": "✅", "unresolved": "❓", "duplicate": "⚠️",
     }
     STATUS_COLOR = {"RECONCILED": "#6ee7b7", "PARTIALLY RECONCILED": "#fde68a", "UNRESOLVED": "#f87171"}

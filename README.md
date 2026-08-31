@@ -3,9 +3,10 @@
 > Don't just match transactions. Understand them.
 
 Veriq reconciles internal ledger, Razorpay settlement, and bank-statement
-records in staged passes (exact → fuzzy → split → AI-assisted). When a direct
-match is ambiguous, it reconstructs the transaction lifecycle—fees, refunds,
-duplicates, and split movements—to resolve the reconciliation case. Anything
+records in staged passes (exact → fuzzy → split → lifecycle evidence → AI review).
+When a direct match is ambiguous, it reconstructs the transaction lifecycle—fees,
+refunds, chargebacks, settlement adjustments, duplicates, split payments, and
+cashback—to resolve the reconciliation case. Anything
 it cannot support confidently becomes an explicit, classified exception rather
 than a forced match.
 
@@ -25,9 +26,9 @@ source venv/bin/activate        # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-Only `pandas` is required to run stages 1–3 (exact, fuzzy, split matching)
+Only `pandas` is required to run the deterministic reconciliation stages
 and generate the dashboard. `anthropic` is only needed if you want to turn on
-Stage 4 (LLM-assisted matching for the hardest remaining cases).
+the optional AI review stage for the hardest remaining cases.
 
 ## Run it
 
@@ -42,10 +43,11 @@ Open `output/report.html` for the reconciliation scorecard and
 `output/story_report.html` for the explainable lifecycle evidence behind each
 reconciliation verdict.
 
-## Turning on LLM-assisted matching (Stage 4, optional)
+## Turning on AI-assisted review (optional)
 
-Stage 4 is skipped automatically if no key is set — everything still works,
-it just leaves more items as exceptions. To enable it:
+AI review is skipped automatically if no key is set. When enabled, the model
+can only select from supplied bank IDs and creates a **needs-review** candidate;
+it never auto-posts or converts missing evidence into a match. To enable it:
 
 ```bash
 export ANTHROPIC_API_KEY=sk-ant-...   # Windows: set ANTHROPIC_API_KEY=sk-ant-...
@@ -56,14 +58,14 @@ python reconcile.py
 
 | File | Purpose |
 |---|---|
-| `generate_data.py` | Builds 3 synthetic CSVs with realistic mismatch patterns: delayed settlements, fee-rounding differences, duplicate webhooks, split bank credits, missing payouts, and inconsistent bank narrations. Swap this out for real exports once you have merchant data. |
-| `reconcile.py` | The matching engine. Stage 1: order ID found in bank narration + amount/date match. Stage 2: greedy fuzzy match on amount+date for rows with no ID in the narration. Stage 3: checks if a settlement equals the sum of two unmatched bank rows (split refunds etc.). Stage 4 (optional): asks Claude to reason about the hardest remaining cases. Everything left over becomes a classified exception, never a forced match. |
+| `generate_data.py` | Builds synthetic multi-source records for refunds, multiple partial refunds, chargebacks, documented settlement adjustments, FX conversion, duplicate ledger records, split payments, cashback, and deliberately unresolved cases. |
+| `reconcile.py` | The matching engine. It resolves exact, fuzzy, split, FX, and evidenced lifecycle-adjustment matches. The optional advanced-model stage only proposes human-review candidates from supplied evidence; it cannot auto-post. Everything else becomes a classified exception. |
 | `dashboard.py` | Renders `output/summary.json` + the CSVs into a static reconciliation scorecard: volume, match rate, precision/recall, match types, and exceptions. |
 | `traction_story.py` | Renders lifecycle explanations for each reconciliation verdict. This is the evidence layer for difficult cases, not a separate forensics product. |
 
 ## Output files (in `output/`)
 
-- `reconciliation_report.csv` — every matched settlement, its match type, confidence, and which bank row(s) it matched to
+- `auto_accepted.csv` and `needs_review.csv` — matched settlements, their evidence, confidence, and bank row(s)
 - `exceptions.csv` — every unmatched settlement with a specific, classified reason (not a generic "unmatched")
 - `unexplained_bank_credits.csv` — bank money that doesn't map to any settlement (worth showing — real money merchants often don't even notice)
 - `summary.json` — match rate %, breakdown by match type, counts

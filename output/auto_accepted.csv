@@ -45,6 +45,15 @@ SETL5078,ORD1064,exact_id,BANK9073,0.99,0.0,Order ID found in bank narration; am
 SETL5079,ORD1065,exact_id,BANK9074,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
 SETL5081,ORD1067,exact_id,BANK9075,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
 SETL5084,ORD1069,exact_id,BANK9079,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5086,ORD1071_REFUND,exact_id,BANK9081,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5088,ORD1072_MULTI_REFUND,exact_id,BANK9083,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5091,ORD1073_CHARGEBACK,exact_id,BANK9086,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5095,ORD1075_FX,fx_conversion,BANK9089,0.99,0.0,FX evidence: 60.0 USD at documented rate 83.333333 equals ₹5000.00; order ID found in narration.
+SETL5096,ORD1076_LEDGER_DUP,exact_id,BANK9090,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5097,ORD1077_SPLIT_PAYMENT,exact_id,BANK9091,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5098,ORD1077_SPLIT_PAYMENT,exact_id,BANK9092,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5099,ORD1078_CASHBACK,exact_id,BANK9093,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5100,ORD1078_CASHBACK,exact_id,BANK9094,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
 SETL5002,ORD1002,fuzzy_amount_date,BANK9002,1.0,0.0,No usable ID in narration; matched on amount (Δ₹0.00) and date (Δ0d).
 SETL5007,ORD1006,fuzzy_amount_date,BANK9007,1.0,0.0,No usable ID in narration; matched on amount (Δ₹0.00) and date (Δ0d).
 SETL5009,ORD1008,fuzzy_amount_date,BANK9009,1.0,0.0,No usable ID in narration; matched on amount (Δ₹0.00) and date (Δ0d).
@@ -69,6 +78,12 @@ SETL5051,ORD1042,exact_id,BANK9046,0.99,0.0,Order ID found in bank narration; am
 SETL5058,ORD1048,exact_id,BANK9052,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
 SETL5069,ORD1057,exact_id,BANK9062,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
 SETL5083,ORD1068,exact_id,BANK9076,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5087,ORD1071_REFUND,exact_id,BANK9082,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5089,ORD1072_MULTI_REFUND,exact_id,BANK9084,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5090,ORD1072_MULTI_REFUND,exact_id,BANK9085,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
+SETL5092,ORD1073_CHARGEBACK,exact_id,BANK9087,0.99,0.0,Order ID found in bank narration; amount and date within tolerance.
 SETL5034,ORD1028,fuzzy_amount_date,BANK9029,0.96,1.25,No usable ID in narration; matched on amount (Δ₹1.25) and date (Δ0d).
 SETL5074,ORD1061,fuzzy_amount_date,BANK9067,0.87,0.0,No usable ID in narration; matched on amount (Δ₹0.00) and date (Δ2d).
 SETL5077,ORD1063,fuzzy_amount_date,BANK9070,0.87,0.0,No usable ID in narration; matched on amount (Δ₹0.00) and date (Δ2d).
+SETL5093,ORD1074_ADJUSTMENT,lifecycle_adjustment,BANK9088,0.98,0.0,"Evidenced lifecycle group (SETL5093+SETL5094): base settlement; ₹5000.00 + adjustments = ₹4500.00, matching bank credit."
+SETL5094,ORD1074_ADJUSTMENT,lifecycle_adjustment,BANK9088,0.98,0.0,"Evidenced lifecycle group (SETL5093+SETL5094): settlement adjustment; ₹5000.00 + adjustments = ₹4500.00, matching bank credit."

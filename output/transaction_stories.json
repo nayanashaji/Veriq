@@ -5,7 +5,7 @@
     "gross_amount": 247.1,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b9241.27.",
     "events": [
       {
         "date": "2026-07-18",
@@ -35,7 +35,7 @@
     "gross_amount": 499.02,
     "status": "RECONCILED",
     "confidence": 1.0,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b9487.24.",
     "events": [
       {
         "date": "2026-07-02",
@@ -65,7 +65,7 @@
     "gross_amount": 2998.69,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b92927.93.",
     "events": [
       {
         "date": "2026-07-18",
@@ -95,7 +95,7 @@
     "gross_amount": 249.92,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b9131.56.",
     "events": [
       {
         "date": "2026-08-04",
@@ -135,7 +135,7 @@
     "gross_amount": 3000.34,
     "status": "RECONCILED",
     "confidence": 0.81,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b92929.53.",
     "events": [
       {
         "date": "2026-07-11",
@@ -165,7 +165,7 @@
     "gross_amount": 1498.52,
     "status": "RECONCILED",
     "confidence": 1.0,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b91463.16.",
     "events": [
       {
         "date": "2026-08-10",
@@ -195,7 +195,7 @@
     "gross_amount": 997.26,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b9973.72.",
     "events": [
       {
         "date": "2026-08-06",
@@ -225,7 +225,7 @@
     "gross_amount": 1999.16,
     "status": "RECONCILED",
     "confidence": 1.0,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b91951.98.",
     "events": [
       {
         "date": "2026-08-07",
@@ -255,7 +255,7 @@
     "gross_amount": 247.61,
     "status": "RECONCILED",
     "confidence": 0.93,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b9241.77.",
     "events": [
       {
         "date": "2026-07-11",
@@ -285,7 +285,7 @@
     "gross_amount": 249.72,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b9243.83.",
     "events": [
       {
         "date": "2026-07-08",
@@ -315,7 +315,7 @@
     "gross_amount": 2998.05,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b92927.30.",
     "events": [
       {
         "date": "2026-08-02",
@@ -345,7 +345,7 @@
     "gross_amount": 4997.65,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for. Duplicate webhook detected and excluded \u2014 did not affect the money movement.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b94879.71. Duplicate webhook detected and excluded \u2014 did not affect the money movement.",
     "events": [
       {
         "date": "2026-08-03",
@@ -380,7 +380,7 @@
     "gross_amount": 2000.79,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b91953.57.",
     "events": [
       {
         "date": "2026-07-06",
@@ -410,7 +410,7 @@
     "gross_amount": 4999.43,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b94881.44.",
     "events": [
       {
         "date": "2026-07-14",
@@ -440,7 +440,7 @@
     "gross_amount": 1497.48,
     "status": "PARTIALLY RECONCILED",
     "confidence": 0.46,
-    "summary": "Open thread(s): Full refund (\u20b91497.48): Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.",
+    "summary": "Net lifecycle movement: \u20b9-35.34. Open thread(s): Full refund (\u20b91497.48): Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.",
     "events": [
       {
         "date": "2026-07-15",
@@ -480,7 +480,7 @@
     "gross_amount": 1997.95,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b91950.80.",
     "events": [
       {
         "date": "2026-08-12",
@@ -510,7 +510,7 @@
     "gross_amount": 2998.72,
     "status": "RECONCILED",
     "confidence": 0.87,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b92927.96.",
     "events": [
       {
         "date": "2026-07-28",
@@ -540,7 +540,7 @@
     "gross_amount": 497.77,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b9486.02.",
     "events": [
       {
         "date": "2026-08-04",
@@ -570,7 +570,7 @@
     "gross_amount": 4997.06,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b94879.13.",
     "events": [
       {
         "date": "2026-07-06",
@@ -600,7 +600,7 @@
     "gross_amount": 1498.06,
     "status": "RECONCILED",
     "confidence": 1.0,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b91462.71.",
     "events": [
       {
         "date": "2026-07-30",
@@ -630,7 +630,7 @@
     "gross_amount": 2999.17,
     "status": "PARTIALLY RECONCILED",
     "confidence": 0.495,
-    "summary": "Open thread(s): Full refund (\u20b92999.17): Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.",
+    "summary": "Net lifecycle movement: \u20b9-70.78. Open thread(s): Full refund (\u20b92999.17): Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.",
     "events": [
       {
         "date": "2026-07-21",
@@ -670,7 +670,7 @@
     "gross_amount": 4997.94,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b94879.99.",
     "events": [
       {
         "date": "2026-07-08",
@@ -700,7 +700,7 @@
     "gross_amount": 997.82,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b9974.27.",
     "events": [
       {
         "date": "2026-08-15",
@@ -730,7 +730,7 @@
     "gross_amount": 2000.98,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b91953.76.",
     "events": [
       {
         "date": "2026-07-05",
@@ -760,7 +760,7 @@
     "gross_amount": 4999.17,
     "status": "RECONCILED",
     "confidence": 1.0,
-    "summary": "Full lifecycle accounted for. Duplicate webhook detected and excluded \u2014 did not affect the money movement.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b94881.19. Duplicate webhook detected and excluded \u2014 did not affect the money movement.",
     "events": [
       {
         "date": "2026-07-20",
@@ -795,7 +795,7 @@
     "gross_amount": 997.46,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b9973.92.",
     "events": [
       {
         "date": "2026-07-07",
@@ -825,7 +825,7 @@
     "gross_amount": 4997.2,
     "status": "RECONCILED",
     "confidence": 1.0,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b94879.27.",
     "events": [
       {
         "date": "2026-08-10",
@@ -855,7 +855,7 @@
     "gross_amount": 2998.71,
     "status": "RECONCILED",
     "confidence": 0.8,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b91578.53.",
     "events": [
       {
         "date": "2026-07-01",
@@ -895,7 +895,7 @@
     "gross_amount": 4997.65,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b94879.71.",
     "events": [
       {
         "date": "2026-07-12",
@@ -925,7 +925,7 @@
     "gross_amount": 2997.43,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b92926.69.",
     "events": [
       {
         "date": "2026-07-03",
@@ -955,7 +955,7 @@
     "gross_amount": 1498.31,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b91462.95.",
     "events": [
       {
         "date": "2026-07-05",
@@ -985,7 +985,7 @@
     "gross_amount": 499.32,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b9-11.79.",
     "events": [
       {
         "date": "2026-07-17",
@@ -1025,7 +1025,7 @@
     "gross_amount": 1999.75,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b91952.55.",
     "events": [
       {
         "date": "2026-08-12",
@@ -1055,7 +1055,7 @@
     "gross_amount": 1498.3,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b91462.94.",
     "events": [
       {
         "date": "2026-08-14",
@@ -1085,7 +1085,7 @@
     "gross_amount": 1499.19,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b91463.81.",
     "events": [
       {
         "date": "2026-07-01",
@@ -1115,7 +1115,7 @@
     "gross_amount": 4999.94,
     "status": "PARTIALLY RECONCILED",
     "confidence": 0.495,
-    "summary": "Open thread(s): Main settlement (\u20b94881.94): Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.",
+    "summary": "Net lifecycle movement: \u20b92631.97. Open thread(s): Main settlement (\u20b94881.94): Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.",
     "events": [
       {
         "date": "2026-08-12",
@@ -1155,7 +1155,7 @@
     "gross_amount": 2000.4,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b91953.19.",
     "events": [
       {
         "date": "2026-07-05",
@@ -1185,7 +1185,7 @@
     "gross_amount": 250.57,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b9244.66.",
     "events": [
       {
         "date": "2026-07-07",
@@ -1215,7 +1215,7 @@
     "gross_amount": 1499.67,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b91464.28.",
     "events": [
       {
         "date": "2026-08-05",
@@ -1245,7 +1245,7 @@
     "gross_amount": 3000.45,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b92929.64.",
     "events": [
       {
         "date": "2026-07-29",
@@ -1275,7 +1275,7 @@
     "gross_amount": 997.94,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b9974.39.",
     "events": [
       {
         "date": "2026-07-22",
@@ -1305,7 +1305,7 @@
     "gross_amount": 999.17,
     "status": "RECONCILED",
     "confidence": 0.93,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b9-23.58.",
     "events": [
       {
         "date": "2026-07-27",
@@ -1345,7 +1345,7 @@
     "gross_amount": 1499.15,
     "status": "RECONCILED",
     "confidence": 0.9,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b91463.77.",
     "events": [
       {
         "date": "2026-08-04",
@@ -1375,7 +1375,7 @@
     "gross_amount": 1500.68,
     "status": "UNRESOLVED",
     "confidence": 0.0,
-    "summary": "Open thread(s): Main settlement (\u20b91465.27): Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.",
+    "summary": "Net lifecycle movement: \u20b91465.27. Open thread(s): Main settlement (\u20b91465.27): Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.",
     "events": [
       {
         "date": "2026-08-09",
@@ -1405,7 +1405,7 @@
     "gross_amount": 1497.54,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b91462.20.",
     "events": [
       {
         "date": "2026-07-30",
@@ -1435,7 +1435,7 @@
     "gross_amount": 1498.01,
     "status": "RECONCILED",
     "confidence": 1.0,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b91462.66.",
     "events": [
       {
         "date": "2026-07-06",
@@ -1465,7 +1465,7 @@
     "gross_amount": 500.36,
     "status": "RECONCILED",
     "confidence": 0.93,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b9488.55.",
     "events": [
       {
         "date": "2026-08-09",
@@ -1495,7 +1495,7 @@
     "gross_amount": 1999.43,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b91532.36.",
     "events": [
       {
         "date": "2026-08-15",
@@ -1535,7 +1535,7 @@
     "gross_amount": 1000.4,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b9976.79.",
     "events": [
       {
         "date": "2026-08-08",
@@ -1565,7 +1565,7 @@
     "gross_amount": 997.05,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b9973.52.",
     "events": [
       {
         "date": "2026-07-27",
@@ -1595,7 +1595,7 @@
     "gross_amount": 2998.08,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b92927.33.",
     "events": [
       {
         "date": "2026-08-04",
@@ -1625,7 +1625,7 @@
     "gross_amount": 500.0,
     "status": "RECONCILED",
     "confidence": 0.93,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b9488.20.",
     "events": [
       {
         "date": "2026-08-06",
@@ -1655,7 +1655,7 @@
     "gross_amount": 1000.52,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b9976.91.",
     "events": [
       {
         "date": "2026-08-14",
@@ -1685,7 +1685,7 @@
     "gross_amount": 2998.9,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b92928.12.",
     "events": [
       {
         "date": "2026-08-15",
@@ -1715,7 +1715,7 @@
     "gross_amount": 1998.38,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b91951.22.",
     "events": [
       {
         "date": "2026-08-05",
@@ -1745,7 +1745,7 @@
     "gross_amount": 4999.76,
     "status": "RECONCILED",
     "confidence": 1.0,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b94881.76.",
     "events": [
       {
         "date": "2026-07-13",
@@ -1775,7 +1775,7 @@
     "gross_amount": 498.44,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for. Duplicate webhook detected and excluded \u2014 did not affect the money movement.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b9-11.76. Duplicate webhook detected and excluded \u2014 did not affect the money movement.",
     "events": [
       {
         "date": "2026-07-20",
@@ -1820,7 +1820,7 @@
     "gross_amount": 500.86,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b9489.04.",
     "events": [
       {
         "date": "2026-07-17",
@@ -1850,7 +1850,7 @@
     "gross_amount": 2000.8,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b91953.58.",
     "events": [
       {
         "date": "2026-07-06",
@@ -1880,7 +1880,7 @@
     "gross_amount": 1000.44,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b9976.83.",
     "events": [
       {
         "date": "2026-07-28",
@@ -1910,7 +1910,7 @@
     "gross_amount": 497.96,
     "status": "RECONCILED",
     "confidence": 0.87,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b9-11.75.",
     "events": [
       {
         "date": "2026-08-05",
@@ -1950,7 +1950,7 @@
     "gross_amount": 1999.64,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b91952.45.",
     "events": [
       {
         "date": "2026-07-13",
@@ -1980,7 +1980,7 @@
     "gross_amount": 2000.68,
     "status": "RECONCILED",
     "confidence": 0.8,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b91253.23.",
     "events": [
       {
         "date": "2026-07-29",
@@ -2020,7 +2020,7 @@
     "gross_amount": 4997.7,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b94879.76.",
     "events": [
       {
         "date": "2026-08-03",
@@ -2050,7 +2050,7 @@
     "gross_amount": 998.28,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b9974.72.",
     "events": [
       {
         "date": "2026-07-07",
@@ -2080,7 +2080,7 @@
     "gross_amount": 998.01,
     "status": "UNRESOLVED",
     "confidence": 0.0,
-    "summary": "Open thread(s): Main settlement (\u20b9974.46): Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.",
+    "summary": "Net lifecycle movement: \u20b9974.46. Open thread(s): Main settlement (\u20b9974.46): Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.",
     "events": [
       {
         "date": "2026-07-08",
@@ -2110,7 +2110,7 @@
     "gross_amount": 1998.85,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b91951.67.",
     "events": [
       {
         "date": "2026-07-04",
@@ -2140,7 +2140,7 @@
     "gross_amount": 1500.52,
     "status": "RECONCILED",
     "confidence": 0.8,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b9849.90.",
     "events": [
       {
         "date": "2026-08-01",
@@ -2180,7 +2180,7 @@
     "gross_amount": 1500.92,
     "status": "RECONCILED",
     "confidence": 0.99,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b91465.50.",
     "events": [
       {
         "date": "2026-07-16",
@@ -2210,7 +2210,7 @@
     "gross_amount": 4998.66,
     "status": "RECONCILED",
     "confidence": 0.93,
-    "summary": "Full lifecycle accounted for.",
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b94880.70.",
     "events": [
       {
         "date": "2026-08-02",
@@ -2231,6 +2231,276 @@
         "date": "2026-08-11",
         "kind": "bank_matched",
         "text": "Settled to bank: \u20b94880.7 via BANK9080 (fuzzy_amount_date, confidence 93%) \u2014 No usable ID in narration; matched on amount (\u0394\u20b90.00) and date (\u03941d)."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1071_REFUND",
+    "customer": "Lifecycle Test Merchant",
+    "gross_amount": 5000.0,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b94000.00.",
+    "events": [
+      {
+        "date": "2026-08-20",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b95000.0"
+      },
+      {
+        "date": "2026-08-20",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b95000.0"
+      },
+      {
+        "date": "2026-08-21",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b95000.0 via BANK9081 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      },
+      {
+        "date": "2026-08-23",
+        "kind": "refund_initiated",
+        "text": "Full refund of \u20b91000.0 initiated"
+      },
+      {
+        "date": "2026-08-23",
+        "kind": "bank_matched",
+        "text": "Refund debited from bank: \u20b91000.0 via BANK9082 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1072_MULTI_REFUND",
+    "customer": "Lifecycle Test Merchant",
+    "gross_amount": 5000.0,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b94000.00.",
+    "events": [
+      {
+        "date": "2026-08-21",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b95000.0"
+      },
+      {
+        "date": "2026-08-21",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b95000.0"
+      },
+      {
+        "date": "2026-08-22",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b95000.0 via BANK9083 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      },
+      {
+        "date": "2026-08-24",
+        "kind": "refund_initiated",
+        "text": "Partial refund of \u20b9300.0 initiated"
+      },
+      {
+        "date": "2026-08-24",
+        "kind": "bank_matched",
+        "text": "Refund debited from bank: \u20b9300.0 via BANK9084 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      },
+      {
+        "date": "2026-08-25",
+        "kind": "refund_initiated",
+        "text": "Partial refund of \u20b9700.0 initiated"
+      },
+      {
+        "date": "2026-08-25",
+        "kind": "bank_matched",
+        "text": "Refund debited from bank: \u20b9700.0 via BANK9085 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1073_CHARGEBACK",
+    "customer": "Lifecycle Test Merchant",
+    "gross_amount": 5000.0,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b90.00.",
+    "events": [
+      {
+        "date": "2026-08-22",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b95000.0"
+      },
+      {
+        "date": "2026-08-22",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b95000.0"
+      },
+      {
+        "date": "2026-08-23",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b95000.0 via BANK9086 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      },
+      {
+        "date": "2026-09-01",
+        "kind": "chargeback",
+        "text": "Chargeback of \u20b95000.0 recorded \u2014 distinct from a customer refund"
+      },
+      {
+        "date": "2026-09-01",
+        "kind": "bank_matched",
+        "text": "Chargeback debited from bank: \u20b95000.0 via BANK9087 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1074_ADJUSTMENT",
+    "customer": "Lifecycle Test Merchant",
+    "gross_amount": 5000.0,
+    "status": "RECONCILED",
+    "confidence": 0.98,
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b94500.00.",
+    "events": [
+      {
+        "date": "2026-08-23",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b95000.0"
+      },
+      {
+        "date": "2026-08-23",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b95000.0"
+      },
+      {
+        "date": "2026-08-24",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b95000.0 via BANK9088 (lifecycle_adjustment, confidence 98%) \u2014 Evidenced lifecycle group (SETL5093+SETL5094): base settlement; \u20b95000.00 + adjustments = \u20b94500.00, matching bank credit."
+      },
+      {
+        "date": "2026-08-24",
+        "kind": "adjustment",
+        "text": "Settlement adjustment: \u20b9-500.0 recorded as a separate lifecycle event."
+      },
+      {
+        "date": "2026-08-24",
+        "kind": "bank_matched",
+        "text": "Refund debited from bank: \u20b9500.0 via BANK9088 (lifecycle_adjustment, confidence 98%) \u2014 Evidenced lifecycle group (SETL5093+SETL5094): settlement adjustment; \u20b95000.00 + adjustments = \u20b94500.00, matching bank credit."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1075_FX",
+    "customer": "Lifecycle Test Merchant",
+    "gross_amount": 60.0,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b960.00.",
+    "events": [
+      {
+        "date": "2026-08-24",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b960.0"
+      },
+      {
+        "date": "2026-08-24",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b960.0"
+      },
+      {
+        "date": "2026-08-25",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b960.0 via BANK9089 (fx_conversion, confidence 99%) \u2014 FX evidence: 60.0 USD at documented rate 83.333333 equals \u20b95000.00; order ID found in narration."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1076_LEDGER_DUP",
+    "customer": "Lifecycle Test Merchant",
+    "gross_amount": 5000.0,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b95000.00.",
+    "events": [
+      {
+        "date": "2026-08-25",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b95000.0"
+      },
+      {
+        "date": "2026-08-25",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b95000.0"
+      },
+      {
+        "date": "2026-08-26",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b95000.0 via BANK9090 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1077_SPLIT_PAYMENT",
+    "customer": "Lifecycle Test Merchant",
+    "gross_amount": 5000.0,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b95000.00.",
+    "events": [
+      {
+        "date": "2026-08-26",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b95000.0"
+      },
+      {
+        "date": "2026-08-26",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b93000.0 as one split-payment leg"
+      },
+      {
+        "date": "2026-08-26",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b92000.0 as one split-payment leg"
+      },
+      {
+        "date": "2026-08-27",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b93000.0 via BANK9091 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      },
+      {
+        "date": "2026-08-27",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b92000.0 via BANK9092 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1078_CASHBACK",
+    "customer": "Lifecycle Test Merchant",
+    "gross_amount": 5000.0,
+    "status": "RECONCILED",
+    "confidence": 0.99,
+    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b95200.00.",
+    "events": [
+      {
+        "date": "2026-08-27",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b95000.0"
+      },
+      {
+        "date": "2026-08-27",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b95000.0"
+      },
+      {
+        "date": "2026-08-28",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b95000.0 via BANK9093 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      },
+      {
+        "date": "2026-08-29",
+        "kind": "adjustment",
+        "text": "Cashback credit: +\u20b9200.0 recorded as a separate lifecycle event."
+      },
+      {
+        "date": "2026-08-29",
+        "kind": "bank_matched",
+        "text": "Settled to bank: \u20b9200.0 via BANK9094 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
       }
     ]
   }

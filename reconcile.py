@@ -5,8 +5,9 @@ Stages (run once per direction: credit-side settlements vs debit-side refunds):
   1. Exact ID match       - order ID found in narration, amount+date within tight tolerance
   2. Fuzzy 1:1 match      - blocked by date-week bucket, then nearest match on amount+date
   3. Split match          - one settlement == sum of 2 unmatched bank rows
-  4. LLM-assisted match   - batched, only for what's left, only if ANTHROPIC_API_KEY is set
-  5. Exception            - everything still unresolved, with a classified reason
+  4. Lifecycle match      - settlement adjustments are reconciled as an evidenced group
+  5. LLM-assisted match   - batched, only for what's left, only if ANTHROPIC_API_KEY is set
+  6. Exception            - everything still unresolved, with a classified reason
 
 Every match also gets confidence-gated into:
   - auto_accepted.csv  (confidence >= AUTO_ACCEPT_THRESHOLD -> safe to post automatically)
@@ -43,14 +44,29 @@ def D(x):
     return Decimal(str(x)).quantize(Decimal("0.01"))
 
 
+def parse_bank_ids(value):
+    """Normalise one-to-many bank links for scoring and audit output."""
+    if value is None or pd.isna(value):
+        return set()
+    return {item for item in str(value).replace("+", ";").split(";") if item}
+
+
 def load_data():
+    orders = pd.read_csv("data/order_ledger.csv", dtype=str).fillna("")
     settlements = pd.read_csv("data/razorpay_settlement.csv", dtype={"net_amount": str})
     bank = pd.read_csv("data/bank_statement.csv", dtype={"amount": str})
     settlements["settlement_date"] = pd.to_datetime(settlements["settlement_date"])
     bank["value_date"] = pd.to_datetime(bank["value_date"])
     settlements["net_amount_d"] = settlements["net_amount"].apply(D)
+    # A foreign-currency processor amount cannot be compared directly to an INR
+    # bank amount. `expected_bank_amount` is supplied only when an explicit FX
+    # rate/evidence is present; otherwise the normal settlement net is used.
+    if "expected_bank_amount" in settlements.columns:
+        settlements["recon_amount_d"] = settlements["expected_bank_amount"].replace("", pd.NA).fillna(settlements["net_amount"]).apply(D)
+    else:
+        settlements["recon_amount_d"] = settlements["net_amount_d"]
     bank["amount_d"] = bank["amount"].apply(D)
-    return settlements, bank
+    return orders, settlements, bank
 
 
 def bucket_bank_by_week(bank_pool, window_days):
@@ -81,14 +97,16 @@ def stage1_exact_id(settlements, bank, matched_s, matched_b, comparisons):
             if b["bank_txn_id"] in matched_b:
                 continue
             comparisons[0] += 1
-            amount_diff = abs(b["amount_d"] - s["net_amount_d"])
+            amount_diff = abs(b["amount_d"] - s["recon_amount_d"])
             date_diff = abs((b["value_date"] - s["settlement_date"]).days)
             if amount_diff <= AMOUNT_TOL_TIGHT and date_diff <= DATE_WINDOW_TIGHT:
+                is_fx = pd.notna(s.get("currency")) and str(s.get("currency")) != "INR"
                 matches.append({
                     "settlement_id": s["settlement_id"], "order_id": s["order_id"],
-                    "match_type": "exact_id", "matched_bank_txn_ids": b["bank_txn_id"],
+                    "match_type": "fx_conversion" if is_fx else "exact_id", "matched_bank_txn_ids": b["bank_txn_id"],
                     "confidence": 0.99, "amount_diff": float(amount_diff),
-                    "notes": "Order ID found in bank narration; amount and date within tolerance.",
+                    "notes": (f"FX evidence: {s['source_amount']} {s['currency']} at documented rate {s['exchange_rate']} equals ₹{s['recon_amount_d']}; order ID found in narration."
+                              if is_fx else "Order ID found in bank narration; amount and date within tolerance."),
                 })
                 matched_s.add(s["settlement_id"])
                 matched_b.add(b["bank_txn_id"])
@@ -109,7 +127,7 @@ def stage2_fuzzy_blocked(settlements, bank, matched_s, matched_b, comparisons):
             if b["bank_txn_id"] in matched_b:
                 continue
             comparisons[0] += 1
-            amount_diff = abs(b["amount_d"] - s["net_amount_d"])
+            amount_diff = abs(b["amount_d"] - s["recon_amount_d"])
             date_diff = abs((b["value_date"] - s["settlement_date"]).days)
             if amount_diff <= AMOUNT_TOL_FUZZY and date_diff <= DATE_WINDOW_FUZZY:
                 cost = float(amount_diff) + date_diff * 2
@@ -145,7 +163,7 @@ def stage3_split(settlements, bank, matched_s, matched_b, comparisons):
         for b1, b2 in itertools.combinations(rows, 2):
             comparisons[0] += 1
             total = b1["amount_d"] + b2["amount_d"]
-            diff = abs(total - s["net_amount_d"])
+            diff = abs(total - s["recon_amount_d"])
             if diff <= AMOUNT_TOL_SPLIT:
                 matches.append({
                     "settlement_id": s["settlement_id"], "order_id": s["order_id"],
@@ -164,9 +182,70 @@ def stage3_split(settlements, bank, matched_s, matched_b, comparisons):
     return matches
 
 
+def stage4_lifecycle_adjustments(settlements, bank, matched_s, matched_b, comparisons):
+    """Resolve a settlement and its explicitly recorded adjustment as one bank
+    movement. A difference is *never* treated as an adjustment unless an
+    adjustment leg exists for the same order and the arithmetic balances."""
+    matches = []
+    adjustment_types = {"settlement_adjustment", "cashback_adjustment"}
+    for order_id, legs in settlements.groupby("order_id"):
+        pending = legs[~legs["settlement_id"].isin(matched_s)]
+        adjustments = pending[pending["type"].isin(adjustment_types)]
+        primaries = pending[pending["type"].isin(["settlement", "split_payment"])]
+        if adjustments.empty or len(primaries) != 1:
+            continue
+        primary = primaries.iloc[0]
+        # Do not aggregate unrelated effects (refunds/chargebacks are separate
+        # bank debits and must have their own evidence).
+        group = pd.concat([primaries, adjustments])
+        expected = sum(group["net_amount_d"], Decimal("0.00"))
+        candidates = bank[
+            (~bank["bank_txn_id"].isin(matched_b)) &
+            (bank["amount_d"] > 0) &
+            (abs((bank["value_date"] - primary["settlement_date"]).dt.days) <= DATE_WINDOW_TIGHT)
+        ]
+        for _, b in candidates.iterrows():
+            comparisons[0] += 1
+            diff = abs(b["amount_d"] - expected)
+            if diff > AMOUNT_TOL_TIGHT:
+                continue
+            linked_ids = "+".join(group["settlement_id"])
+            for _, leg in group.iterrows():
+                role = "base settlement" if leg["settlement_id"] == primary["settlement_id"] else leg["type"].replace("_", " ")
+                matches.append({
+                    "settlement_id": leg["settlement_id"], "order_id": order_id,
+                    "match_type": "lifecycle_adjustment", "matched_bank_txn_ids": b["bank_txn_id"],
+                    "confidence": 0.98, "amount_diff": float(diff),
+                    "notes": f"Evidenced lifecycle group ({linked_ids}): {role}; ₹{primary['net_amount_d']} + adjustments = ₹{expected}, matching bank credit.",
+                })
+                matched_s.add(leg["settlement_id"])
+            matched_b.add(b["bank_txn_id"])
+            break
+    return matches
+
+
+def detect_ledger_duplicates(orders, settlements):
+    """Flag repeated internal entries rather than inventing a missing payout."""
+    exceptions = []
+    for order_id, rows in orders.groupby("order_id"):
+        if len(rows) < 2:
+            continue
+        processor_legs = settlements[(settlements["order_id"] == order_id) &
+                                      (settlements["type"].isin(["settlement", "split_payment"]))]
+        if len(processor_legs) >= 1:
+            extras = len(rows) - 1
+            exceptions.append({
+                "entity_type": "ledger_record", "settlement_id": "", "order_id": order_id,
+                "net_amount": rows.iloc[-1]["gross_amount"], "settlement_date": rows.iloc[-1]["order_date"],
+                "reason": f"Duplicate ledger entry detected: {len(rows)} internal records but {len(processor_legs)} processor payment leg(s). The extra {extras} ledger record(s) were not treated as missing money.",
+            })
+    return exceptions
+
+
 def stage4_llm_batched(settlements, bank, matched_s, matched_b):
-    """Batches several unmatched settlements into ONE prompt instead of one API
-    call per settlement - cheaper and faster than calling per-row."""
+    """Use the model only to surface a *review candidate*. It can never post a
+    transaction automatically: output is constrained to supplied IDs, checked
+    again locally, and deliberately capped below the auto-accept threshold."""
     api_key = os.environ.get("ANTHROPIC_API_KEY")
     remaining_s = settlements[~settlements["settlement_id"].isin(matched_s)]
     if not api_key or remaining_s.empty:
@@ -195,7 +274,7 @@ def stage4_llm_batched(settlements, bank, matched_s, matched_b):
             cases.append({
                 "settlement_id": s["settlement_id"],
                 "order_id": s["order_id"],
-                "net_amount": str(s["net_amount_d"]),
+                "reconciliation_amount": str(s["recon_amount_d"]),
                 "settlement_date": s["settlement_date"].date().isoformat(),
                 "candidates": [
                     {"bank_txn_id": b["bank_txn_id"], "amount": str(b["amount_d"]),
@@ -208,8 +287,9 @@ def stage4_llm_batched(settlements, bank, matched_s, matched_b):
 
         prompt = f"""You are a payments reconciliation analyst. Below is a batch of settlement
 rows that could not be automatically matched to a bank statement line, each with its own
-list of nearby candidate bank rows. For EACH settlement, decide if any candidate plausibly
-corresponds to it, accounting for fee rounding, delayed credit, or split/partial payments.
+list of nearby candidate bank rows. Return a candidate ONLY where the supplied narration,
+date, and arithmetic provide direct evidence. Do not infer facts or invent IDs. If evidence
+is incomplete or ambiguous, return match: null.
 
 Cases:
 {json.dumps(cases, indent=2)}
@@ -219,7 +299,7 @@ Respond ONLY with a JSON array, one object per settlement_id, no other text:
 
         try:
             response = client.messages.create(
-                model="claude-sonnet-4-6", max_tokens=800,
+                model=os.environ.get("ANTHROPIC_MODEL", "claude-sonnet-4-5"), max_tokens=800,
                 messages=[{"role": "user", "content": prompt}],
             )
             text = response.content[0].text.strip().replace("```json", "").replace("```", "").strip()
@@ -228,14 +308,18 @@ Respond ONLY with a JSON array, one object per settlement_id, no other text:
             print(f"LLM batch call failed: {e}")
             continue
 
+        case_map = {case["settlement_id"]: case for case in cases}
         for item in parsed:
+            case = case_map.get(item.get("settlement_id"))
+            if not case or item.get("match") not in {c["bank_txn_id"] for c in case["candidates"]}:
+                continue
             if item.get("match") and item.get("confidence", 0) >= 0.6 and item["match"] not in matched_b:
                 sid = item["settlement_id"]
                 oid = settlements.loc[settlements["settlement_id"] == sid, "order_id"].values[0]
                 matches.append({
-                    "settlement_id": sid, "order_id": oid, "match_type": "llm_assisted",
-                    "matched_bank_txn_ids": item["match"], "confidence": item["confidence"],
-                    "amount_diff": None, "notes": f"LLM reasoning: {item.get('reason', '')}",
+                    "settlement_id": sid, "order_id": oid, "match_type": "llm_review_candidate",
+                    "matched_bank_txn_ids": item["match"], "confidence": min(float(item["confidence"]), 0.79),
+                    "amount_diff": None, "notes": f"AI-proposed evidence candidate — requires human approval, never auto-posted: {item.get('reason', '')}",
                 })
                 matched_s.add(sid)
                 matched_b.add(item["match"])
@@ -244,6 +328,14 @@ Respond ONLY with a JSON array, one object per settlement_id, no other text:
 
 
 def classify_exception(s, bank):
+    explicit = {
+        "duplicate_settlement": "Duplicate processor webhook has no independent bank credit. Left unresolved rather than matched to the original payout.",
+        "settlement_adjustment": "Settlement adjustment has no balancing base-settlement and bank-credit evidence. Manual review required.",
+        "chargeback": "Chargeback has no evidenced matching bank debit. Manual review required; it was not assumed to be a refund.",
+        "cashback_adjustment": "Additional credit has no evidenced bank movement. Manual review required.",
+    }
+    if s["type"] in explicit:
+        return explicit[s["type"]]
     nearby = bank[abs((bank["value_date"] - s["settlement_date"]).dt.days) <= 15]
     if nearby.empty:
         leg = "refund debit" if s["net_amount_d"] < 0 else "settlement credit"
@@ -264,11 +356,11 @@ def score_against_ground_truth(matches_df, exceptions_df):
     predicted = {}
     if not matches_df.empty:
         for _, m in matches_df.iterrows():
-            predicted[m["settlement_id"]] = set(str(m["matched_bank_txn_ids"]).split("+")[0].split(";"))
+            predicted[m["settlement_id"]] = parse_bank_ids(m["matched_bank_txn_ids"])
 
     tp = fp = fn = tn = 0
     for sid, row in gt_map.items():
-        true_ids = set(row["true_bank_txn_ids"].split(";")) if row["true_bank_txn_ids"] else set()
+        true_ids = parse_bank_ids(row["true_bank_txn_ids"])
         should_match = row["should_match"]
         pred_ids = predicted.get(sid)
 
@@ -298,8 +390,8 @@ def score_against_ground_truth(matches_df, exceptions_df):
         row = gt_map.get(sid)
         if row is None:
             continue
-        true_ids = set(row["true_bank_txn_ids"].split(";")) if row["true_bank_txn_ids"] else set()
-        pred_ids = set(str(m["matched_bank_txn_ids"]).split("+")[0].split(";"))
+        true_ids = parse_bank_ids(row["true_bank_txn_ids"])
+        pred_ids = parse_bank_ids(m["matched_bank_txn_ids"])
         if row["should_match"] and pred_ids == true_ids:
             auto_tp += 1
         else:
@@ -314,7 +406,7 @@ def score_against_ground_truth(matches_df, exceptions_df):
 
 
 def main():
-    settlements, bank = load_data()
+    orders, settlements, bank = load_data()
     matched_s, matched_b = set(), set()
     comparisons = [0]
     all_matches = []
@@ -329,6 +421,7 @@ def main():
         all_matches += stage2_fuzzy_blocked(s_pool, b_pool, matched_s, matched_b, comparisons)
         all_matches += stage3_split(s_pool, b_pool, matched_s, matched_b, comparisons)
 
+    all_matches += stage4_lifecycle_adjustments(settlements, bank, matched_s, matched_b, comparisons)
     all_matches += stage4_llm_batched(settlements, bank, matched_s, matched_b)
 
     matched_df = pd.DataFrame(all_matches)
@@ -337,10 +430,11 @@ def main():
 
     unmatched = settlements[~settlements["settlement_id"].isin(matched_s)].copy()
     exceptions = [{
-        "settlement_id": s["settlement_id"], "order_id": s["order_id"],
+        "entity_type": "settlement", "settlement_id": s["settlement_id"], "order_id": s["order_id"],
         "net_amount": str(s["net_amount_d"]), "settlement_date": s["settlement_date"].date().isoformat(),
         "reason": classify_exception(s, bank),
     } for _, s in unmatched.iterrows()]
+    exceptions.extend(detect_ledger_duplicates(orders, settlements))
     exceptions_df = pd.DataFrame(exceptions)
 
     unexplained_bank = bank[~bank["bank_txn_id"].isin(matched_b)].copy()

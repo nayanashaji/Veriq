@@ -177,6 +177,88 @@ for i in range(N_ORDERS):
                                   "should_match": True, "reason": ""})
 
 # a few unexplained bank credits with no ground-truth settlement behind them at all
+# ---- deterministic lifecycle cases used to exercise every supported pattern ----
+def add_special_order(suffix, amount, date, status="paid", duplicate_ledger=False):
+    global order_counter
+    order_counter += 1
+    oid = f"ORD{order_counter}_{suffix}"
+    row = {"order_id": oid, "customer": "Lifecycle Test Merchant", "gross_amount": str(D(amount)),
+           "order_date": date.strftime("%Y-%m-%d"), "status": status}
+    orders.append(row)
+    if duplicate_ledger:
+        orders.append({**row, "record_id": f"DUPLICATE_{oid}"})
+    return oid
+
+
+def add_special_leg(order_id, leg_type, amount, date, bank_amount=None, narration=None, **extra):
+    global settlement_counter, bank_counter
+    settlement_counter += 1
+    sid = f"SETL{settlement_counter}"
+    leg = {"settlement_id": sid, "order_id": order_id, "gross_amount": str(D(amount)),
+           "fee": "0.00", "tax": "0.00", "net_amount": str(D(amount)),
+           "settlement_date": date.strftime("%Y-%m-%d"), "type": leg_type, **extra}
+    settlements.append(leg)
+    if bank_amount is None:
+        ground_truth.append({"settlement_id": sid, "true_bank_txn_ids": "", "should_match": False,
+                             "reason": f"{leg_type} has no bank movement"})
+        return sid
+    bank_counter += 1
+    bid = f"BANK{bank_counter}"
+    bank_rows.append({"bank_txn_id": bid, "amount": str(D(bank_amount)),
+                      "value_date": date.strftime("%Y-%m-%d"),
+                      "narration": narration or f"RAZORPAY/{order_id}/{leg_type}",
+                      "true_settlement_id": sid})
+    ground_truth.append({"settlement_id": sid, "true_bank_txn_ids": bid, "should_match": True, "reason": ""})
+    return sid
+
+
+case_date = datetime(2026, 8, 20)
+# 1. A payment followed by a separate refund debit: retained value decreases.
+oid = add_special_order("REFUND", 5000, case_date, "partial_refund")
+add_special_leg(oid, "settlement", 5000, case_date + timedelta(days=1), 5000)
+add_special_leg(oid, "refund", -1000, case_date + timedelta(days=3), -1000)
+
+# 2. Two separately evidenced refunds linked to one original order.
+oid = add_special_order("MULTI_REFUND", 5000, case_date + timedelta(days=1), "partial_refund")
+add_special_leg(oid, "settlement", 5000, case_date + timedelta(days=2), 5000)
+add_special_leg(oid, "partial_refund", -300, case_date + timedelta(days=4), -300)
+add_special_leg(oid, "partial_refund", -700, case_date + timedelta(days=5), -700)
+
+# 3. Chargebacks are a distinct debit event, never relabelled as refunds.
+oid = add_special_order("CHARGEBACK", 5000, case_date + timedelta(days=2), "chargeback")
+add_special_leg(oid, "settlement", 5000, case_date + timedelta(days=3), 5000)
+add_special_leg(oid, "chargeback", -5000, case_date + timedelta(days=12), -5000)
+
+# 4. An adjustment must exist as its own processor leg and balance the bank credit.
+oid = add_special_order("ADJUSTMENT", 5000, case_date + timedelta(days=3))
+main_sid = add_special_leg(oid, "settlement", 5000, case_date + timedelta(days=4), None)
+adjust_sid = add_special_leg(oid, "settlement_adjustment", -500, case_date + timedelta(days=4), None)
+bank_counter += 1
+adjustment_bid = f"BANK{bank_counter}"
+bank_rows.append({"bank_txn_id": adjustment_bid, "amount": "4500.00", "value_date": (case_date + timedelta(days=4)).strftime("%Y-%m-%d"),
+                  "narration": f"RAZORPAY/{oid}/SETTLEMENT ADJUSTMENT", "true_settlement_id": f"{main_sid};{adjust_sid}"})
+for sid in (main_sid, adjust_sid):
+    ground_truth[-2 if sid == main_sid else -1] = {"settlement_id": sid, "true_bank_txn_ids": adjustment_bid, "should_match": True, "reason": ""}
+
+# 5. FX conversion: source amount and documented rate evidence the INR bank credit.
+oid = add_special_order("FX", 60, case_date + timedelta(days=4))
+add_special_leg(oid, "settlement", 60, case_date + timedelta(days=5), 5000,
+                currency="USD", source_amount="60.00", exchange_rate="83.333333", expected_bank_amount="5000.00")
+
+# 6. The duplicate is in the ledger; one processor capture remains the real payment.
+oid = add_special_order("LEDGER_DUP", 5000, case_date + timedelta(days=5), duplicate_ledger=True)
+add_special_leg(oid, "settlement", 5000, case_date + timedelta(days=6), 5000)
+
+# 7. Two processor payments add up to the one order, with two independent bank credits.
+oid = add_special_order("SPLIT_PAYMENT", 5000, case_date + timedelta(days=6))
+add_special_leg(oid, "split_payment", 3000, case_date + timedelta(days=7), 3000)
+add_special_leg(oid, "split_payment", 2000, case_date + timedelta(days=7), 2000)
+
+# 8. Cashback is an additional, separately evidenced movement, not a sale mismatch.
+oid = add_special_order("CASHBACK", 5000, case_date + timedelta(days=7))
+add_special_leg(oid, "settlement", 5000, case_date + timedelta(days=8), 5000)
+add_special_leg(oid, "cashback_adjustment", 200, case_date + timedelta(days=9), 200)
+
 for _ in range(3):
     bank_counter += 1
     bank_rows.append({
