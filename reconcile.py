@@ -134,11 +134,25 @@ def stage2_fuzzy_blocked(settlements, bank, matched_s, matched_b, comparisons):
                 pairs.append((cost, s["settlement_id"], s["order_id"], b["bank_txn_id"], amount_diff, date_diff))
 
     pairs.sort(key=lambda x: x[0])
+    # If two candidates are effectively tied, an amount/date match alone is
+    # insufficient evidence. Keep it as an exception rather than force a row.
+    costs_by_settlement = {}
+    for pair in pairs:
+        costs_by_settlement.setdefault(pair[1], []).append(pair[0])
+    ambiguous_settlements = {
+        sid for sid, costs in costs_by_settlement.items()
+        if len(costs) > 1 and (costs[1] - costs[0]) <= 1.0
+    }
     matches = []
     for cost, sid, oid, bid, amount_diff, date_diff in pairs:
-        if sid in matched_s or bid in matched_b:
+        if sid in ambiguous_settlements or sid in matched_s or bid in matched_b:
             continue
         confidence = round(max(0.55, 1 - (cost / 30)), 2)
+        # A fuzzy-only association below the auto-accept threshold has no
+        # stable identifying evidence. Preserve it as an exception rather than
+        # creating a potentially wrong reconciliation link.
+        if confidence < AUTO_ACCEPT_THRESHOLD:
+            continue
         matches.append({
             "settlement_id": sid, "order_id": oid, "match_type": "fuzzy_amount_date",
             "matched_bank_txn_ids": bid, "confidence": confidence, "amount_diff": float(amount_diff),
@@ -336,6 +350,13 @@ def classify_exception(s, bank):
     }
     if s["type"] in explicit:
         return explicit[s["type"]]
+    plausible = bank[
+        (abs(bank["amount_d"] - s["recon_amount_d"]) <= AMOUNT_TOL_FUZZY) &
+        (abs((bank["value_date"] - s["settlement_date"]).dt.days) <= DATE_WINDOW_FUZZY) &
+        ((bank["amount_d"] > 0) == (s["recon_amount_d"] > 0))
+    ]
+    if len(plausible) > 1:
+        return "Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception."
     nearby = bank[abs((bank["value_date"] - s["settlement_date"]).dt.days) <= 15]
     if nearby.empty:
         leg = "refund debit" if s["net_amount_d"] < 0 else "settlement credit"

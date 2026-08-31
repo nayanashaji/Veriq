@@ -41,12 +41,12 @@
   <div class="tagline">Don't just match transactions. Understand them.</div>
   <p class="explanation">Veriq reconciles internal ledger, payment-processor settlement, and bank records. For difficult cases, it reconstructs the transaction lifecycle to explain timing, fees, refunds, duplicates, and split movements—then returns a reconciliation verdict or a clear exception.</p>
   <div class="metrics">
-    <div class="metric"><div class="metric-label">Records processed</div><div class="metric-value">100</div></div>
-    <div class="metric"><div class="metric-label">Match rate</div><div class="metric-value">92.0%</div></div>
+    <div class="metric"><div class="metric-label">Records processed</div><div class="metric-value">101</div></div>
+    <div class="metric"><div class="metric-label">Match rate</div><div class="metric-value">89.1%</div></div>
     <div class="metric"><div class="metric-label">Precision</div><div class="metric-value">100.0%</div></div>
-    <div class="metric"><div class="metric-label">Recall</div><div class="metric-value">100.0%</div></div>
-    <div class="metric"><div class="metric-label">Auto-reconciled</div><div class="metric-value">88</div></div>
-    <div class="metric"><div class="metric-label">Exceptions</div><div class="metric-value">9</div></div>
+    <div class="metric"><div class="metric-label">Recall</div><div class="metric-value">97.8%</div></div>
+    <div class="metric"><div class="metric-label">Auto-reconciled</div><div class="metric-value">87</div></div>
+    <div class="metric"><div class="metric-label">Exceptions</div><div class="metric-value">12</div></div>
   </div>
   <div class="flow" aria-label="Reconciliation workflow">
     <span class="flow-step">Exact matching</span><span class="flow-arrow">→</span>
@@ -57,12 +57,25 @@
   </div>
   <h2>Lifecycle explanations for reconciliation decisions</h2>
   <div class="filters">
-    <button class="active" onclick="filterStatus('ALL', this)">All (78)</button>
-    <button onclick="filterStatus('RECONCILED', this)">Reconciled (73)</button>
+    <button class="active" onclick="filterStatus('ALL', this)">All (79)</button>
+    <button onclick="filterStatus('RECONCILED', this)">Reconciled (71)</button>
     <button onclick="filterStatus('PARTIALLY RECONCILED', this)">Partially Reconciled (3)</button>
-    <button onclick="filterStatus('UNRESOLVED', this)">Unresolved (2)</button>
+    <button onclick="filterStatus('UNRESOLVED', this)">Unresolved (5)</button>
   </div>
   
+        <div class="story-card" data-status="UNRESOLVED">
+          <div class="story-head">
+            <div>
+              <span class="order-id">ORD1005</span>
+              <span class="customer">Karthik Subramanian · ₹3000.34</span>
+            </div>
+            <div class="status-pill" style="background:#f8717122; color:#f87171; border:1px solid #f8717166;">
+              UNRESOLVED · 0% confidence
+            </div>
+          </div>
+          <div class="summary">Net lifecycle movement: ₹2929.53. Open thread(s): Main settlement (₹2929.53): Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception.</div>
+          <div class="timeline"><div class="event"><span class="icon">🛒</span><span class="edate">2026-07-11</span><span class="etext">Customer paid ₹3000.34</span></div><div class="event"><span class="icon">💳</span><span class="edate">2026-07-11</span><span class="etext">Razorpay captured ₹3000.34</span></div><div class="event"><span class="icon">➖</span><span class="edate">2026-07-11</span><span class="etext">₹70.81 deducted (fee ₹60.01 + tax ₹10.8)</span></div><div class="event"><span class="icon">❓</span><span class="edate">2026-07-12</span><span class="etext">No confirmed bank movement for main settlement of ₹2929.53 — Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception.</span></div></div>
+        </div>
         <div class="story-card" data-status="UNRESOLVED">
           <div class="story-head">
             <div>
@@ -73,8 +86,8 @@
               UNRESOLVED · 0% confidence
             </div>
           </div>
-          <div class="summary">Net lifecycle movement: ₹1465.27. Open thread(s): Main settlement (₹1465.27): Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.</div>
-          <div class="timeline"><div class="event"><span class="icon">🛒</span><span class="edate">2026-08-09</span><span class="etext">Customer paid ₹1500.68</span></div><div class="event"><span class="icon">💳</span><span class="edate">2026-08-09</span><span class="etext">Razorpay captured ₹1500.68</span></div><div class="event"><span class="icon">➖</span><span class="edate">2026-08-09</span><span class="etext">₹35.41 deducted (fee ₹30.01 + tax ₹5.4)</span></div><div class="event"><span class="icon">❓</span><span class="edate">2026-08-11</span><span class="etext">No confirmed bank movement for main settlement of ₹1465.27 — Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.</span></div></div>
+          <div class="summary">Net lifecycle movement: ₹1465.27. Open thread(s): Main settlement (₹1465.27): Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception.</div>
+          <div class="timeline"><div class="event"><span class="icon">🛒</span><span class="edate">2026-08-09</span><span class="etext">Customer paid ₹1500.68</span></div><div class="event"><span class="icon">💳</span><span class="edate">2026-08-09</span><span class="etext">Razorpay captured ₹1500.68</span></div><div class="event"><span class="icon">➖</span><span class="edate">2026-08-09</span><span class="etext">₹35.41 deducted (fee ₹30.01 + tax ₹5.4)</span></div><div class="event"><span class="icon">❓</span><span class="edate">2026-08-11</span><span class="etext">No confirmed bank movement for main settlement of ₹1465.27 — Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception.</span></div></div>
         </div>
         <div class="story-card" data-status="UNRESOLVED">
           <div class="story-head">
@@ -86,8 +99,34 @@
               UNRESOLVED · 0% confidence
             </div>
           </div>
-          <div class="summary">Net lifecycle movement: ₹974.46. Open thread(s): Main settlement (₹974.46): Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.</div>
-          <div class="timeline"><div class="event"><span class="icon">🛒</span><span class="edate">2026-07-08</span><span class="etext">Customer paid ₹998.01</span></div><div class="event"><span class="icon">💳</span><span class="edate">2026-07-08</span><span class="etext">Razorpay captured ₹998.01</span></div><div class="event"><span class="icon">➖</span><span class="edate">2026-07-08</span><span class="etext">₹23.55 deducted (fee ₹19.96 + tax ₹3.59)</span></div><div class="event"><span class="icon">❓</span><span class="edate">2026-07-10</span><span class="etext">No confirmed bank movement for main settlement of ₹974.46 — Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.</span></div></div>
+          <div class="summary">Net lifecycle movement: ₹974.46. Open thread(s): Main settlement (₹974.46): Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception.</div>
+          <div class="timeline"><div class="event"><span class="icon">🛒</span><span class="edate">2026-07-08</span><span class="etext">Customer paid ₹998.01</span></div><div class="event"><span class="icon">💳</span><span class="edate">2026-07-08</span><span class="etext">Razorpay captured ₹998.01</span></div><div class="event"><span class="icon">➖</span><span class="edate">2026-07-08</span><span class="etext">₹23.55 deducted (fee ₹19.96 + tax ₹3.59)</span></div><div class="event"><span class="icon">❓</span><span class="edate">2026-07-10</span><span class="etext">No confirmed bank movement for main settlement of ₹974.46 — Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception.</span></div></div>
+        </div>
+        <div class="story-card" data-status="UNRESOLVED">
+          <div class="story-head">
+            <div>
+              <span class="order-id">ORD1070</span>
+              <span class="customer">Anjali Gupta · ₹4998.66</span>
+            </div>
+            <div class="status-pill" style="background:#f8717122; color:#f87171; border:1px solid #f8717166;">
+              UNRESOLVED · 0% confidence
+            </div>
+          </div>
+          <div class="summary">Net lifecycle movement: ₹4880.70. Open thread(s): Main settlement (₹4880.7): Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception.</div>
+          <div class="timeline"><div class="event"><span class="icon">🛒</span><span class="edate">2026-08-02</span><span class="etext">Customer paid ₹4998.66</span></div><div class="event"><span class="icon">💳</span><span class="edate">2026-08-02</span><span class="etext">Razorpay captured ₹4998.66</span></div><div class="event"><span class="icon">➖</span><span class="edate">2026-08-02</span><span class="etext">₹117.96 deducted (fee ₹99.97 + tax ₹17.99)</span></div><div class="event"><span class="icon">❓</span><span class="edate">2026-08-11</span><span class="etext">No confirmed bank movement for main settlement of ₹4880.7 — Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception.</span></div></div>
+        </div>
+        <div class="story-card" data-status="UNRESOLVED">
+          <div class="story-head">
+            <div>
+              <span class="order-id">ORD1079_AMBIGUOUS</span>
+              <span class="customer">Lifecycle Test Merchant · ₹1000.0</span>
+            </div>
+            <div class="status-pill" style="background:#f8717122; color:#f87171; border:1px solid #f8717166;">
+              UNRESOLVED · 0% confidence
+            </div>
+          </div>
+          <div class="summary">Net lifecycle movement: ₹1000.00. Open thread(s): Main settlement (₹1000.0): Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception.</div>
+          <div class="timeline"><div class="event"><span class="icon">🛒</span><span class="edate">2026-08-28</span><span class="etext">Customer paid ₹1000.0</span></div><div class="event"><span class="icon">💳</span><span class="edate">2026-08-28</span><span class="etext">Razorpay captured ₹1000.0</span></div><div class="event"><span class="icon">❓</span><span class="edate">2026-08-29</span><span class="etext">No confirmed bank movement for main settlement of ₹1000.0 — Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception.</span></div></div>
         </div>
         <div class="story-card" data-status="PARTIALLY RECONCILED">
           <div class="story-head">
@@ -125,8 +164,8 @@
               PARTIALLY RECONCILED · 50% confidence
             </div>
           </div>
-          <div class="summary">Net lifecycle movement: ₹2631.97. Open thread(s): Main settlement (₹4881.94): Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.</div>
-          <div class="timeline"><div class="event"><span class="icon">🛒</span><span class="edate">2026-08-12</span><span class="etext">Customer paid ₹4999.94</span></div><div class="event"><span class="icon">💳</span><span class="edate">2026-08-12</span><span class="etext">Razorpay captured ₹4999.94</span></div><div class="event"><span class="icon">➖</span><span class="edate">2026-08-12</span><span class="etext">₹118.0 deducted (fee ₹100.0 + tax ₹18.0)</span></div><div class="event"><span class="icon">❓</span><span class="edate">2026-08-14</span><span class="etext">No confirmed bank movement for main settlement of ₹4881.94 — Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.</span></div><div class="event"><span class="icon">↩️</span><span class="edate">2026-08-16</span><span class="etext">Partial refund of ₹2249.97 initiated</span></div><div class="event"><span class="icon">✅</span><span class="edate">2026-08-16</span><span class="etext">Refund debited from bank: ₹2249.97 via BANK9040 (exact_id, confidence 99%) — Order ID found in bank narration; amount and date within tolerance.</span></div></div>
+          <div class="summary">Net lifecycle movement: ₹2631.97. Open thread(s): Main settlement (₹4881.94): Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception.</div>
+          <div class="timeline"><div class="event"><span class="icon">🛒</span><span class="edate">2026-08-12</span><span class="etext">Customer paid ₹4999.94</span></div><div class="event"><span class="icon">💳</span><span class="edate">2026-08-12</span><span class="etext">Razorpay captured ₹4999.94</span></div><div class="event"><span class="icon">➖</span><span class="edate">2026-08-12</span><span class="etext">₹118.0 deducted (fee ₹100.0 + tax ₹18.0)</span></div><div class="event"><span class="icon">❓</span><span class="edate">2026-08-14</span><span class="etext">No confirmed bank movement for main settlement of ₹4881.94 — Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception.</span></div><div class="event"><span class="icon">↩️</span><span class="edate">2026-08-16</span><span class="etext">Partial refund of ₹2249.97 initiated</span></div><div class="event"><span class="icon">✅</span><span class="edate">2026-08-16</span><span class="etext">Refund debited from bank: ₹2249.97 via BANK9040 (exact_id, confidence 99%) — Order ID found in bank narration; amount and date within tolerance.</span></div></div>
         </div>
         <div class="story-card" data-status="RECONCILED">
           <div class="story-head">
@@ -179,19 +218,6 @@
           </div>
           <div class="summary">Full lifecycle accounted for. Net lifecycle movement: ₹131.56.</div>
           <div class="timeline"><div class="event"><span class="icon">🛒</span><span class="edate">2026-08-04</span><span class="etext">Customer paid ₹249.92</span></div><div class="event"><span class="icon">💳</span><span class="edate">2026-08-04</span><span class="etext">Razorpay captured ₹249.92</span></div><div class="event"><span class="icon">➖</span><span class="edate">2026-08-04</span><span class="etext">₹5.9 deducted (fee ₹5.0 + tax ₹0.9)</span></div><div class="event"><span class="icon">✅</span><span class="edate">2026-08-05</span><span class="etext">Settled to bank: ₹244.02 via BANK9005 (exact_id, confidence 99%) — Order ID found in bank narration; amount and date within tolerance.</span></div><div class="event"><span class="icon">↩️</span><span class="edate">2026-08-08</span><span class="etext">Partial refund of ₹112.46 initiated</span></div><div class="event"><span class="icon">✅</span><span class="edate">2026-08-08</span><span class="etext">Refund debited from bank: ₹112.46 via BANK9004 (exact_id, confidence 99%) — Order ID found in bank narration; amount and date within tolerance.</span></div></div>
-        </div>
-        <div class="story-card" data-status="RECONCILED">
-          <div class="story-head">
-            <div>
-              <span class="order-id">ORD1005</span>
-              <span class="customer">Karthik Subramanian · ₹3000.34</span>
-            </div>
-            <div class="status-pill" style="background:#6ee7b722; color:#6ee7b7; border:1px solid #6ee7b766;">
-              RECONCILED · 81% confidence
-            </div>
-          </div>
-          <div class="summary">Full lifecycle accounted for. Net lifecycle movement: ₹2929.53.</div>
-          <div class="timeline"><div class="event"><span class="icon">🛒</span><span class="edate">2026-07-11</span><span class="etext">Customer paid ₹3000.34</span></div><div class="event"><span class="icon">💳</span><span class="edate">2026-07-11</span><span class="etext">Razorpay captured ₹3000.34</span></div><div class="event"><span class="icon">➖</span><span class="edate">2026-07-11</span><span class="etext">₹70.81 deducted (fee ₹60.01 + tax ₹10.8)</span></div><div class="event"><span class="icon">✅</span><span class="edate">2026-07-12</span><span class="etext">Settled to bank: ₹2929.53 via BANK9006 (fuzzy_amount_date, confidence 81%) — No usable ID in narration; matched on amount (Δ₹1.75) and date (Δ2d).</span></div></div>
         </div>
         <div class="story-card" data-status="RECONCILED">
           <div class="story-head">
@@ -959,19 +985,6 @@
           </div>
           <div class="summary">Full lifecycle accounted for. Net lifecycle movement: ₹1465.50.</div>
           <div class="timeline"><div class="event"><span class="icon">🛒</span><span class="edate">2026-07-16</span><span class="etext">Customer paid ₹1500.92</span></div><div class="event"><span class="icon">💳</span><span class="edate">2026-07-16</span><span class="etext">Razorpay captured ₹1500.92</span></div><div class="event"><span class="icon">➖</span><span class="edate">2026-07-16</span><span class="etext">₹35.42 deducted (fee ₹30.02 + tax ₹5.4)</span></div><div class="event"><span class="icon">✅</span><span class="edate">2026-07-23</span><span class="etext">Settled to bank: ₹1465.5 via BANK9079 (exact_id, confidence 99%) — Order ID found in bank narration; amount and date within tolerance.</span></div></div>
-        </div>
-        <div class="story-card" data-status="RECONCILED">
-          <div class="story-head">
-            <div>
-              <span class="order-id">ORD1070</span>
-              <span class="customer">Anjali Gupta · ₹4998.66</span>
-            </div>
-            <div class="status-pill" style="background:#6ee7b722; color:#6ee7b7; border:1px solid #6ee7b766;">
-              RECONCILED · 93% confidence
-            </div>
-          </div>
-          <div class="summary">Full lifecycle accounted for. Net lifecycle movement: ₹4880.70.</div>
-          <div class="timeline"><div class="event"><span class="icon">🛒</span><span class="edate">2026-08-02</span><span class="etext">Customer paid ₹4998.66</span></div><div class="event"><span class="icon">💳</span><span class="edate">2026-08-02</span><span class="etext">Razorpay captured ₹4998.66</span></div><div class="event"><span class="icon">➖</span><span class="edate">2026-08-02</span><span class="etext">₹117.96 deducted (fee ₹99.97 + tax ₹17.99)</span></div><div class="event"><span class="icon">✅</span><span class="edate">2026-08-11</span><span class="etext">Settled to bank: ₹4880.7 via BANK9080 (fuzzy_amount_date, confidence 93%) — No usable ID in narration; matched on amount (Δ₹0.00) and date (Δ1d).</span></div></div>
         </div>
         <div class="story-card" data-status="RECONCILED">
           <div class="story-head">

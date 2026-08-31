@@ -1,29 +1,29 @@
 {
-  "generated_at": "2026-08-30T00:56:50.862246",
-  "total_settlements_considered": 100,
-  "matched_count": 92,
-  "match_rate_pct": 92.0,
+  "generated_at": "2026-08-31T14:47:04.585836",
+  "total_settlements_considered": 101,
+  "matched_count": 90,
+  "match_rate_pct": 89.1,
   "match_type_breakdown": {
     "exact_id": 65,
-    "fuzzy_amount_date": 21,
+    "fuzzy_amount_date": 19,
     "split_bank_entries": 3,
     "lifecycle_adjustment": 2,
     "fx_conversion": 1
   },
-  "auto_accepted_count": 88,
-  "needs_review_count": 4,
-  "exception_count": 9,
-  "unexplained_bank_credit_count": 3,
+  "auto_accepted_count": 87,
+  "needs_review_count": 3,
+  "exception_count": 12,
+  "unexplained_bank_credit_count": 7,
   "llm_assisted_used": false,
-  "pairwise_comparisons_made": 418,
+  "pairwise_comparisons_made": 426,
   "ground_truth_scoring": {
-    "true_positives": 92,
+    "true_positives": 90,
     "false_positives": 0,
-    "false_negatives": 0,
-    "true_negatives": 8,
+    "false_negatives": 2,
+    "true_negatives": 9,
     "precision": 1.0,
-    "recall": 1.0,
+    "recall": 0.978,
     "auto_accept_precision": 1.0,
-    "auto_accept_count": 88
+    "auto_accept_count": 87
   }
 }

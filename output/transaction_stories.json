@@ -133,9 +133,9 @@
     "order_id": "ORD1005",
     "customer": "Karthik Subramanian",
     "gross_amount": 3000.34,
-    "status": "RECONCILED",
-    "confidence": 0.81,
-    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b92929.53.",
+    "status": "UNRESOLVED",
+    "confidence": 0.0,
+    "summary": "Net lifecycle movement: \u20b92929.53. Open thread(s): Main settlement (\u20b92929.53): Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception.",
     "events": [
       {
         "date": "2026-07-11",
@@ -154,8 +154,8 @@
       },
       {
         "date": "2026-07-12",
-        "kind": "bank_matched",
-        "text": "Settled to bank: \u20b92929.53 via BANK9006 (fuzzy_amount_date, confidence 81%) \u2014 No usable ID in narration; matched on amount (\u0394\u20b91.75) and date (\u03942d)."
+        "kind": "unresolved",
+        "text": "No confirmed bank movement for main settlement of \u20b92929.53 \u2014 Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception."
       }
     ]
   },
@@ -1115,7 +1115,7 @@
     "gross_amount": 4999.94,
     "status": "PARTIALLY RECONCILED",
     "confidence": 0.495,
-    "summary": "Net lifecycle movement: \u20b92631.97. Open thread(s): Main settlement (\u20b94881.94): Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.",
+    "summary": "Net lifecycle movement: \u20b92631.97. Open thread(s): Main settlement (\u20b94881.94): Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception.",
     "events": [
       {
         "date": "2026-08-12",
@@ -1135,7 +1135,7 @@
       {
         "date": "2026-08-14",
         "kind": "unresolved",
-        "text": "No confirmed bank movement for main settlement of \u20b94881.94 \u2014 Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review."
+        "text": "No confirmed bank movement for main settlement of \u20b94881.94 \u2014 Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception."
       },
       {
         "date": "2026-08-16",
@@ -1375,7 +1375,7 @@
     "gross_amount": 1500.68,
     "status": "UNRESOLVED",
     "confidence": 0.0,
-    "summary": "Net lifecycle movement: \u20b91465.27. Open thread(s): Main settlement (\u20b91465.27): Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.",
+    "summary": "Net lifecycle movement: \u20b91465.27. Open thread(s): Main settlement (\u20b91465.27): Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception.",
     "events": [
       {
         "date": "2026-08-09",
@@ -1395,7 +1395,7 @@
       {
         "date": "2026-08-11",
         "kind": "unresolved",
-        "text": "No confirmed bank movement for main settlement of \u20b91465.27 \u2014 Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review."
+        "text": "No confirmed bank movement for main settlement of \u20b91465.27 \u2014 Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception."
       }
     ]
   },
@@ -2080,7 +2080,7 @@
     "gross_amount": 998.01,
     "status": "UNRESOLVED",
     "confidence": 0.0,
-    "summary": "Net lifecycle movement: \u20b9974.46. Open thread(s): Main settlement (\u20b9974.46): Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.",
+    "summary": "Net lifecycle movement: \u20b9974.46. Open thread(s): Main settlement (\u20b9974.46): Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception.",
     "events": [
       {
         "date": "2026-07-08",
@@ -2100,7 +2100,7 @@
       {
         "date": "2026-07-10",
         "kind": "unresolved",
-        "text": "No confirmed bank movement for main settlement of \u20b9974.46 \u2014 Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review."
+        "text": "No confirmed bank movement for main settlement of \u20b9974.46 \u2014 Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception."
       }
     ]
   },
@@ -2208,9 +2208,9 @@
     "order_id": "ORD1070",
     "customer": "Anjali Gupta",
     "gross_amount": 4998.66,
-    "status": "RECONCILED",
-    "confidence": 0.93,
-    "summary": "Full lifecycle accounted for. Net lifecycle movement: \u20b94880.70.",
+    "status": "UNRESOLVED",
+    "confidence": 0.0,
+    "summary": "Net lifecycle movement: \u20b94880.70. Open thread(s): Main settlement (\u20b94880.7): Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception.",
     "events": [
       {
         "date": "2026-08-02",
@@ -2229,8 +2229,8 @@
       },
       {
         "date": "2026-08-11",
-        "kind": "bank_matched",
-        "text": "Settled to bank: \u20b94880.7 via BANK9080 (fuzzy_amount_date, confidence 93%) \u2014 No usable ID in narration; matched on amount (\u0394\u20b90.00) and date (\u03941d)."
+        "kind": "unresolved",
+        "text": "No confirmed bank movement for main settlement of \u20b94880.7 \u2014 Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception."
       }
     ]
   },
@@ -2501,6 +2501,31 @@
         "date": "2026-08-29",
         "kind": "bank_matched",
         "text": "Settled to bank: \u20b9200.0 via BANK9094 (exact_id, confidence 99%) \u2014 Order ID found in bank narration; amount and date within tolerance."
+      }
+    ]
+  },
+  {
+    "order_id": "ORD1079_AMBIGUOUS",
+    "customer": "Lifecycle Test Merchant",
+    "gross_amount": 1000.0,
+    "status": "UNRESOLVED",
+    "confidence": 0.0,
+    "summary": "Net lifecycle movement: \u20b91000.00. Open thread(s): Main settlement (\u20b91000.0): Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception.",
+    "events": [
+      {
+        "date": "2026-08-28",
+        "kind": "order_placed",
+        "text": "Customer paid \u20b91000.0"
+      },
+      {
+        "date": "2026-08-28",
+        "kind": "captured",
+        "text": "Razorpay captured \u20b91000.0"
+      },
+      {
+        "date": "2026-08-29",
+        "kind": "unresolved",
+        "text": "No confirmed bank movement for main settlement of \u20b91000.0 \u2014 Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception."
       }
     ]
   }

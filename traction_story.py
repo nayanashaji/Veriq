@@ -268,8 +268,8 @@ def render_html(stories, status_counts, reconciliation_summary):
   <div class="metrics">
     <div class="metric"><div class="metric-label">Records processed</div><div class="metric-value">{reconciliation_summary['total_settlements_considered']}</div></div>
     <div class="metric"><div class="metric-label">Match rate</div><div class="metric-value">{reconciliation_summary['match_rate_pct']}%</div></div>
-    <div class="metric"><div class="metric-label">Precision</div><div class="metric-value">{reconciliation_summary.get('ground_truth_scoring', {}).get('precision', 0) * 100:.1f}%</div></div>
-    <div class="metric"><div class="metric-label">Recall</div><div class="metric-value">{reconciliation_summary.get('ground_truth_scoring', {}).get('recall', 0) * 100:.1f}%</div></div>
+    <div class="metric"><div class="metric-label">Precision</div><div class="metric-value">{((reconciliation_summary.get('ground_truth_scoring') or {}).get('precision') or 0) * 100:.1f}%</div></div>
+    <div class="metric"><div class="metric-label">Recall</div><div class="metric-value">{((reconciliation_summary.get('ground_truth_scoring') or {}).get('recall') or 0) * 100:.1f}%</div></div>
     <div class="metric"><div class="metric-label">Auto-reconciled</div><div class="metric-value">{reconciliation_summary['auto_accepted_count']}</div></div>
     <div class="metric"><div class="metric-label">Exceptions</div><div class="metric-value">{reconciliation_summary['exception_count']}</div></div>
   </div>

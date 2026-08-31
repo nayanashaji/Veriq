@@ -37,11 +37,94 @@ python generate_data.py   # creates data/order_ledger.csv, razorpay_settlement.c
 python reconcile.py       # runs the matching engine -> output/*.csv, output/summary.json
 python dashboard.py       # builds output/report.html
 python traction_story.py  # builds output/story_report.html with lifecycle explanations
+python evaluate.py        # writes a case-type evaluation report for synthetic data
 ```
 
 Open `output/report.html` for the reconciliation scorecard and
 `output/story_report.html` for the explainable lifecycle evidence behind each
 reconciliation verdict.
+
+## Local demo UI
+
+```bash
+uvicorn app:app --reload
+```
+
+Open `http://127.0.0.1:8000`. **Try Demo Dataset** runs only the labelled
+synthetic data. **Upload Your Data** accepts the three CSV exports and does not
+claim precision/recall because no ground truth is available.
+
+## Razorpay Test Mode ingestion
+
+```bash
+set RAZORPAY_KEY_ID=...
+set RAZORPAY_KEY_SECRET=...
+python fetch_razorpay.py --year 2026 --month 8
+```
+
+This separately saves the raw official Test Mode settlement-reconciliation
+response and a normalized settlement CSV in `data/razorpay_test_mode/`. It
+never overwrites the synthetic data or treats Test Mode records as real merchant
+data. Supply corresponding merchant-ledger and bank exports before reconciling
+the Test Mode file.
+
+## Scalable Spark pipeline
+
+For production-style batches, run the distributed pipeline instead of loading
+every source into Pandas:
+
+```bash
+python scalable_reconcile.py --input data --warehouse warehouse
+```
+
+It writes partitioned, append-only Parquet tables for reconciliation decisions,
+candidate edges, explicit exceptions, duplicate-ledger exceptions, reviewer
+labels, and an AI-review queue. Candidate blocking uses merchant, payment rail,
+currency, amount bucket, and date bucket before ranking, so it never performs
+a full cross join. Every candidate edge keeps its features and rejection reason.
+Identical replay events are skipped within a batch; unchanged decision
+fingerprints are skipped on subsequent runs.
+
+On this Windows workstation, use `--dry-run` unless Hadoop `winutils.exe` is
+configured. Linux Spark clusters (Databricks, EMR, Kubernetes, standalone Spark)
+do not have that local Windows requirement.
+
+After analysts have supplied `data/reviewer_decisions.csv` with
+`settlement_id,approved,actual_bank_txn_id,reviewer,reviewed_at`, train a
+candidate-ranking model with:
+
+```bash
+python train_match_ranker.py --warehouse warehouse
+```
+
+The ranking model only prioritizes the review queue; deterministic evidence
+rules remain the gate for automatic posting.
+
+### Evidence and AI-review controls
+
+The warehouse tables provide a complete audit path:
+
+```text
+ingestion_deduplication → candidate_edges → reconciliation_decisions
+                                            → ai_review_queue → ai_recommendations
+                                            → review_labels
+```
+
+`candidate_edges` stores every considered bank candidate, calculated features,
+blocking and rule versions, selection/rejection status, and rejection reason.
+`reconciliation_decisions` stores the final deterministic outcome, confidence,
+reason, and rule version. The model is invoked only for `ai_review_queue` items
+with competing candidates. It can select only an already supplied bank ID (or
+no match), and its result never alters a decision automatically.
+
+```bash
+# Requires an existing warehouse written on a Linux/cluster environment.
+export ANTHROPIC_API_KEY=...
+python ai_review_ambiguous.py --warehouse warehouse
+
+# Validate queue handling without sending any data to the model.
+python ai_review_ambiguous.py --warehouse warehouse --dry-run
+```
 
 ## Turning on AI-assisted review (optional)
 

@@ -36,15 +36,15 @@
 </head>
 <body>
   <h1>Veriq — AI-Powered Multi-Source Reconciliation</h1>
-  <div class="subtitle">Don't just match transactions. Understand them. · Generated 2026-08-30T00:56:50.862246</div>
+  <div class="subtitle">Don't just match transactions. Understand them. · Generated 2026-08-31T14:47:04.585836</div>
 
   <div class="section">
     <h2>Reconciliation outcome</h2>
     <div class="cards">
-      <div class="card info"><div class="label">Records Processed</div><div class="value">100</div></div>
-      <div class="card good"><div class="label">Match Rate</div><div class="value">92.0%</div></div>
-      <div class="card good"><div class="label">Auto-Reconciled</div><div class="value">88</div></div>
-      <div class="card warn"><div class="label">Exceptions</div><div class="value">9</div></div>
+      <div class="card info"><div class="label">Records Processed</div><div class="value">101</div></div>
+      <div class="card good"><div class="label">Match Rate</div><div class="value">89.1%</div></div>
+      <div class="card good"><div class="label">Auto-Reconciled</div><div class="value">87</div></div>
+      <div class="card warn"><div class="label">Exceptions</div><div class="value">12</div></div>
     </div>
     <div class="note">Multi-source reconciliation across the internal ledger, Razorpay settlements, and bank statement. Lifecycle reconstruction explains difficult cases; unresolved items remain visible as exceptions.</div>
   </div>
@@ -53,9 +53,9 @@
     <h2>Accuracy against held-out ground truth</h2>
     <div class="cards">
       <div class="card good"><div class="label">Precision</div><div class="value">100.0%</div></div>
-      <div class="card good"><div class="label">Recall</div><div class="value">100.0%</div></div>
+      <div class="card good"><div class="label">Recall</div><div class="value">97.8%</div></div>
       <div class="card good"><div class="label">Auto-Accept Precision</div><div class="value">100.0%</div></div>
-      <div class="card info"><div class="label">Comparisons Made</div><div class="value">418</div></div>
+      <div class="card info"><div class="label">Comparisons Made</div><div class="value">426</div></div>
     </div>
     <div class="note">Precision/recall measured against a labeled synthetic answer key (data/ground_truth.csv) —
       not just "% of rows matched". Auto-accept precision is measured only on matches confident enough
@@ -65,11 +65,11 @@
   <div class="section">
     <h2>Volume</h2>
     <div class="cards">
-      <div class="card"><div class="label">Settlements Considered</div><div class="value">100</div></div>
-      <div class="card good"><div class="label">Auto-Accepted</div><div class="value">88</div></div>
-      <div class="card"><div class="label">Needs Review</div><div class="value">4</div></div>
-      <div class="card warn"><div class="label">Exceptions</div><div class="value">9</div></div>
-      <div class="card warn"><div class="label">Unexplained Bank Credits</div><div class="value">3</div></div>
+      <div class="card"><div class="label">Settlements Considered</div><div class="value">101</div></div>
+      <div class="card good"><div class="label">Auto-Accepted</div><div class="value">87</div></div>
+      <div class="card"><div class="label">Needs Review</div><div class="value">3</div></div>
+      <div class="card warn"><div class="label">Exceptions</div><div class="value">12</div></div>
+      <div class="card warn"><div class="label">Unexplained Bank Credits</div><div class="value">7</div></div>
     </div>
   </div>
 
@@ -79,7 +79,7 @@
   </div>
 
   <div class="section">
-    <h2>Auto-accepted matches (88) — posted without human review</h2>
+    <h2>Auto-accepted matches (87) — posted without human review</h2>
     <table class="dataframe data-table">
   <thead>
     <tr style="text-align: right;">
@@ -697,15 +697,6 @@
       <td>No usable ID in narration; matched on amount (Δ₹0.00) and date (Δ1d).</td>
     </tr>
     <tr>
-      <td>SETL5085</td>
-      <td>ORD1070</td>
-      <td>fuzzy_amount_date</td>
-      <td>BANK9080</td>
-      <td>0.93</td>
-      <td>0.00</td>
-      <td>No usable ID in narration; matched on amount (Δ₹0.00) and date (Δ1d).</td>
-    </tr>
-    <tr>
       <td>SETL5017</td>
       <td>ORD1015</td>
       <td>fuzzy_amount_date</td>
@@ -890,7 +881,7 @@
   </div>
 
   <div class="section">
-    <h2>Needs review (4) — confident enough to surface, not enough to auto-post</h2>
+    <h2>Needs review (3) — confident enough to surface, not enough to auto-post</h2>
     <table class="dataframe data-table">
   <thead>
     <tr style="text-align: right;">
@@ -905,21 +896,12 @@
   </thead>
   <tbody>
     <tr>
-      <td>SETL5006</td>
-      <td>ORD1005</td>
-      <td>fuzzy_amount_date</td>
-      <td>BANK9006</td>
-      <td>0.81</td>
-      <td>1.75</td>
-      <td>No usable ID in narration; matched on amount (Δ₹1.75) and date (Δ2d).</td>
-    </tr>
-    <tr>
       <td>SETL5033</td>
       <td>ORD1028</td>
       <td>split_bank_entries</td>
       <td>BANK9030+BANK9031</td>
-      <td>0.80</td>
-      <td>0.00</td>
+      <td>0.8</td>
+      <td>0.0</td>
       <td>Settlement amount matches the SUM of two unmatched bank entries within window.</td>
     </tr>
     <tr>
@@ -927,8 +909,8 @@
       <td>ORD1063</td>
       <td>split_bank_entries</td>
       <td>BANK9071+BANK9072</td>
-      <td>0.80</td>
-      <td>0.90</td>
+      <td>0.8</td>
+      <td>0.9</td>
       <td>Settlement amount matches the SUM of two unmatched bank entries within window.</td>
     </tr>
     <tr>
@@ -936,8 +918,8 @@
       <td>ORD1068</td>
       <td>split_bank_entries</td>
       <td>BANK9077+BANK9078</td>
-      <td>0.80</td>
-      <td>0.00</td>
+      <td>0.8</td>
+      <td>0.0</td>
       <td>Settlement amount matches the SUM of two unmatched bank entries within window.</td>
     </tr>
   </tbody>
@@ -945,7 +927,7 @@
   </div>
 
   <div class="section">
-    <h2>Exceptions — honest, unresolved cases (9)</h2>
+    <h2>Exceptions — honest, unresolved cases (12)</h2>
     <table class="dataframe data-table">
   <thead>
     <tr style="text-align: right;">
@@ -958,6 +940,14 @@
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td>settlement</td>
+      <td>SETL5006</td>
+      <td>ORD1005</td>
+      <td>2929.53</td>
+      <td>2026-07-12</td>
+      <td>Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception.</td>
+    </tr>
     <tr>
       <td>settlement</td>
       <td>SETL5014</td>
@@ -996,7 +986,7 @@
       <td>ORD1036</td>
       <td>4881.94</td>
       <td>2026-08-14</td>
-      <td>Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.</td>
+      <td>Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception.</td>
     </tr>
     <tr>
       <td>settlement</td>
@@ -1004,7 +994,7 @@
       <td>ORD1044</td>
       <td>1465.27</td>
       <td>2026-08-11</td>
-      <td>Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.</td>
+      <td>Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception.</td>
     </tr>
     <tr>
       <td>settlement</td>
@@ -1020,7 +1010,23 @@
       <td>ORD1066</td>
       <td>974.46</td>
       <td>2026-07-10</td>
-      <td>Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.</td>
+      <td>Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception.</td>
+    </tr>
+    <tr>
+      <td>settlement</td>
+      <td>SETL5085</td>
+      <td>ORD1070</td>
+      <td>4880.70</td>
+      <td>2026-08-11</td>
+      <td>Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception.</td>
+    </tr>
+    <tr>
+      <td>settlement</td>
+      <td>SETL5101</td>
+      <td>ORD1079_AMBIGUOUS</td>
+      <td>1000.00</td>
+      <td>2026-08-29</td>
+      <td>Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception.</td>
     </tr>
     <tr>
       <td>ledger_record</td>
@@ -1037,7 +1043,7 @@
 <script>
   new Chart(document.getElementById('breakdownChart'), {
     type: 'doughnut',
-    data: { labels: ["exact_id", "fuzzy_amount_date", "split_bank_entries", "lifecycle_adjustment", "fx_conversion"], datasets: [{ data: [65, 21, 3, 2, 1],
+    data: { labels: ["exact_id", "fuzzy_amount_date", "split_bank_entries", "lifecycle_adjustment", "fx_conversion"], datasets: [{ data: [65, 19, 3, 2, 1],
       backgroundColor: ['#6ee7b7', '#fde68a', '#93c5fd', '#d8b4fe', '#f87171'], borderWidth: 0 }] },
     options: { plugins: { legend: { position: 'bottom', labels: { color: '#e6e9f0' } } } }
   });

@@ -259,6 +259,16 @@ oid = add_special_order("CASHBACK", 5000, case_date + timedelta(days=7))
 add_special_leg(oid, "settlement", 5000, case_date + timedelta(days=8), 5000)
 add_special_leg(oid, "cashback_adjustment", 200, case_date + timedelta(days=9), 200)
 
+# Controlled ambiguity: two equally plausible but unreferenced credits. Neither
+# is a true counterpart, so the reconciler must raise an exception, not guess.
+oid = add_special_order("AMBIGUOUS", 1000, case_date + timedelta(days=8))
+add_special_leg(oid, "settlement", 1000, case_date + timedelta(days=9), None)
+for suffix in ("A", "B"):
+    bank_counter += 1
+    bank_rows.append({"bank_txn_id": f"BANK{bank_counter}", "amount": "1000.00",
+                      "value_date": (case_date + timedelta(days=10)).strftime("%Y-%m-%d"),
+                      "narration": f"UNREFERENCED CREDIT {suffix}", "true_settlement_id": ""})
+
 for _ in range(3):
     bank_counter += 1
     bank_rows.append({
@@ -266,6 +276,32 @@ for _ in range(3):
         "value_date": rand_date(START_DATE).strftime("%Y-%m-%d"),
         "narration": "UNKNOWN CREDIT - BANK REF", "true_settlement_id": "",
     })
+
+settlement_by_id = {row["settlement_id"]: row for row in settlements}
+bank_by_id = {row["bank_txn_id"]: row for row in bank_rows}
+for label in ground_truth:
+    leg = settlement_by_id[label["settlement_id"]]
+    label["transaction_id"] = label["settlement_id"]
+    label["expected_bank_ids"] = label["true_bank_txn_ids"]
+    if not label["should_match"]:
+        label["case_type"] = "Duplicate" if leg["type"] == "duplicate_settlement" else (
+            "Ambiguous candidate" if "AMBIGUOUS" in leg["order_id"] else "Missing bank transaction")
+        label["expected_outcome"] = "EXCEPTION"
+        continue
+    if leg["type"] in ("refund", "partial_refund"):
+        same_order_refunds = [s for s in settlements if s["order_id"] == leg["order_id"] and s["type"] == "partial_refund"]
+        label["case_type"] = "Split refund" if len(same_order_refunds) > 1 else "Partial refund"
+    elif leg["type"] in ("settlement_adjustment", "cashback_adjustment") or "ADJUSTMENT" in leg["order_id"]:
+        label["case_type"] = "Lifecycle adjustment"
+    elif "AMBIGUOUS" in leg["order_id"]:
+        label["case_type"] = "Ambiguous candidate"
+    else:
+        ids = label["true_bank_txn_ids"].split(";")
+        rows = [bank_by_id[bid] for bid in ids if bid in bank_by_id]
+        date_gap = max(abs((datetime.strptime(row["value_date"], "%Y-%m-%d") - datetime.strptime(leg["settlement_date"], "%Y-%m-%d")).days) for row in rows)
+        amount_gap = abs(sum(D(row["amount"]) for row in rows) - D(leg["net_amount"]))
+        label["case_type"] = "Delayed settlement" if date_gap > 3 else ("Small amount discrepancy" if amount_gap > 0 else "Normal match")
+    label["expected_outcome"] = "RECONCILED"
 
 pd.DataFrame(orders).to_csv("data/order_ledger.csv", index=False)
 pd.DataFrame(settlements).to_csv("data/razorpay_settlement.csv", index=False)

@@ -1,10 +1,13 @@
 entity_type,settlement_id,order_id,net_amount,settlement_date,reason
+settlement,SETL5006,ORD1005,2929.53,2026-07-12,Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception.
 settlement,SETL5014,ORD1012,4879.71,2026-08-05,Duplicate processor webhook has no independent bank credit. Left unresolved rather than matched to the original payout.
 settlement,SETL5018,ORD1015,-1497.48,2026-07-26,Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.
 settlement,SETL5025,ORD1021,-2999.17,2026-07-25,Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.
 settlement,SETL5030,ORD1025,4881.19,2026-07-22,Duplicate processor webhook has no independent bank credit. Left unresolved rather than matched to the original payout.
-settlement,SETL5043,ORD1036,4881.94,2026-08-14,Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.
-settlement,SETL5053,ORD1044,1465.27,2026-08-11,Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.
+settlement,SETL5043,ORD1036,4881.94,2026-08-14,Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception.
+settlement,SETL5053,ORD1044,1465.27,2026-08-11,Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception.
 settlement,SETL5068,ORD1057,486.68,2026-07-21,Duplicate processor webhook has no independent bank credit. Left unresolved rather than matched to the original payout.
-settlement,SETL5080,ORD1066,974.46,2026-07-10,Unresolved - closest bank candidates fall outside amount/date tolerance. Needs manual review.
+settlement,SETL5080,ORD1066,974.46,2026-07-10,Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception.
+settlement,SETL5085,ORD1070,4880.70,2026-08-11,Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception.
+settlement,SETL5101,ORD1079_AMBIGUOUS,1000.00,2026-08-29,Ambiguous candidate: multiple bank movements satisfy the amount/date constraints without identifying evidence. Left as an exception.
 ledger_record,,ORD1076_LEDGER_DUP,5000.00,2026-08-25,Duplicate ledger entry detected: 2 internal records but 1 processor payment leg(s). The extra 1 ledger record(s) were not treated as missing money.

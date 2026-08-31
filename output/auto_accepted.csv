@@ -66,7 +66,6 @@ SETL5010,ORD1009,fuzzy_amount_date,BANK9010,0.93,0.0,No usable ID in narration; 
 SETL5050,ORD1042,fuzzy_amount_date,BANK9047,0.93,0.0,No usable ID in narration; matched on amount (Δ₹0.00) and date (Δ1d).
 SETL5056,ORD1047,fuzzy_amount_date,BANK9051,0.93,0.0,No usable ID in narration; matched on amount (Δ₹0.00) and date (Δ1d).
 SETL5062,ORD1052,fuzzy_amount_date,BANK9057,0.93,0.0,No usable ID in narration; matched on amount (Δ₹0.00) and date (Δ1d).
-SETL5085,ORD1070,fuzzy_amount_date,BANK9080,0.93,0.0,No usable ID in narration; matched on amount (Δ₹0.00) and date (Δ1d).
 SETL5017,ORD1015,fuzzy_amount_date,BANK9016,0.92,2.5,No usable ID in narration; matched on amount (Δ₹2.50) and date (Δ0d).
 SETL5052,ORD1043,fuzzy_amount_date,BANK9048,0.9,1.1,No usable ID in narration; matched on amount (Δ₹1.10) and date (Δ1d).
 SETL5073,ORD1061,fuzzy_amount_date,BANK9068,0.88,1.75,No usable ID in narration; matched on amount (Δ₹1.75) and date (Δ1d).
