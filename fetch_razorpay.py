@@ -15,6 +15,9 @@ from urllib.parse import urlencode
 from urllib.request import Request, urlopen
 import base64
 import pandas as pd
+from dotenv import load_dotenv
+
+load_dotenv()
 
 API = "https://api.razorpay.com/v1/settlements/recon/combined"
 
